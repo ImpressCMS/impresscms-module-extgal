@@ -1,0 +1,21 @@
+<div id="extgallery">
+	<table style="border:1px solid black; padding:7px; margin:0px auto 0px auto;">
+		<tr>
+			<td>
+				<img src="<{$ecard.photoUrl}>" alt="<{$ecard.ecard_greetings}>" title="eCard from <{$ecard.ecard_fromname}>" /><br />
+			</td>
+			<td style="vertical-align:top; padding-left:7px;">
+				<div style="text-align:right;">
+					<img src="<{$xoops_url}>/modules/extgallery/images/stamp.gif" />
+				</div>
+				<h2><{$ecard.ecard_greetings}></h2>
+				<p><{$ecard.ecard_desc}></p>
+				<p><{$ecard.ecard_fromname}><br />
+				(<a href="mailto:<{$ecard.ecard_fromemail}>"><{$ecard.ecard_fromemail}></a>)</p>
+			</td>
+		</tr>
+	</table>
+	<p style="text-align:center;">
+		<a href="<{$xoops_url}>/modules/extgallery/"><{$lang.clickFormMore}></a>
+	</p>
+</div>

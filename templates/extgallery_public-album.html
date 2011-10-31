@@ -1,0 +1,84 @@
+<div id="extgallery">
+	<a href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a><{foreachq item=node from=$catPath name=breadcrumb}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <a href="public-categories.php?id=<{$node.cat_id}>"><{$node.cat_name}></a><{/foreach}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$cat.cat_name}>
+	<div class="pageNav">
+		<{$pageNav}>
+	</div>
+	<table id="thumbTable" class="outer">
+		<tr>
+			<th colspan="<{$nbColumn}>"><{$cat.cat_name}></th>
+		</tr>
+		<tr class="even">
+		<{section name=photo loop=$photos}>
+		<{if $smarty.section.photo.index % $nbColumn == 0 && !$smarty.section.photo.first}>
+		</tr>
+		<tr class="even">
+		<{/if}>
+			<td>
+			<{if $photos[photo].photo_id}>
+
+				<!-- Start Admin link -->
+				<{if $xoops_isadmin}>
+				<div class="adminLink">
+					<a href="public-modify.php?op=edit&id=<{$photos[photo].photo_id}>"><img src="images/edit.gif" /></a>&nbsp;
+					<a href="public-modify.php?op=delete&id=<{$photos[photo].photo_id}>"><img src="images/delete.gif" /></a>
+				</div>
+				<{/if}>
+				<!-- End Admin link -->
+
+				<{if $photos[photo].photo_serveur && $photos[photo].photo_name}>
+				<a href="public-photo.php?photoId=<{$photos[photo].photo_id}>#photoNav"><img class="thumb" src="<{$photos[photo].photo_serveur}>thumb_<{$photos[photo].photo_name}>" alt="<{$photos[photo].photo_desc}>" title="<{$photos[photo].photo_desc}>" /></a>
+				<{elseif $photos[photo].photo_name}>
+				<a href="public-photo.php?photoId=<{$photos[photo].photo_id}>#photoNav"><img class="thumb" src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photos[photo].photo_name}>" alt="<{$photos[photo].photo_desc}>" title="<{$photos[photo].photo_desc}>" /></a>
+				<{/if}>
+
+				<!-- Photo Title -->
+				<!-- Si l'option d'affichage du titre de la photo est activée, alors -->
+				<{if $disp_ph_title == 1 }>
+					<div><b><{$photos[photo].photo_title}></b></div>
+				<{/if}>
+
+				<!-- Start Hit count -->
+				<div><b><{$photos[photo].photo_hits}></b> <{$lang.hits}></div>
+				<!-- End Hit count -->
+
+				<!-- Start Comment count -->
+				<div><b><{$photos[photo].photo_comment}></b> <{$lang.comments}></div>
+				<!-- End Comment count -->
+
+				<!-- Start Submitter link -->
+				<div><a href="<{$xoops_url}>/userinfo.php?uid=<{$photos[photo].user.uid}>"><{$photos[photo].user.uname}></a></div>
+				<!-- End Submitter link -->
+
+				<{if $enableRating}>
+				<!-- Start Rating score -->
+				<div><img src="images/rating_<{$photos[photo].photo_rating}>.gif" alt="<{$lang.rate_score}> : <{$photos[photo].photo_rating}>" title="<{$lang.rate_score}>" /></div>
+				<!-- End Rating score -->
+				<{/if}>
+
+				<{if $enableExtra}>
+				<!-- Start extra field -->
+				<div><{$photos[photo].photo_extra}></div>
+				<!-- End extra filed -->
+				<{/if}>
+
+				<{foreachq item=pluginLink from=$photos[photo].link}>
+                <a href="<{$pluginLink.link}><{$photos[photo].photo_id}>" alt="<{$pluginLink.name}>"><{$pluginLink.name}></a>
+				<{/foreach}>
+
+				<!-- Start Displaying Hook code -->
+<!--			<{if $xoops_isadmin}>
+					<div><input type="text" value='[gallery title="<{$photos[photo].photo_desc}>"]<{$photos[photo].photo_id}>[/gallery]' /></div>
+				<{/if}>
+	-->
+				<!-- End Displaying Hook code -->
+			<{/if}>
+			</td>
+		<{/section}>
+		</tr>
+	</table>
+	<div class="pageNav">
+		<{$pageNav}>
+	</div>
+
+	<{include file='db:system_notification_select.html'}>
+</div>

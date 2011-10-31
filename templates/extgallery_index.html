@@ -1,0 +1,69 @@
+<div id="extgallery">
+	<a href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a>
+
+	<table class="outer">
+		<tr>
+			<th><{$lang.categoriesAlbums}></th>
+			<th style="text-align:center;"><{$lang.nbAlbums}></th>
+			<th style="text-align:center;"><{$lang.nbPhotos}></th>
+		</tr>
+		<{foreachq item=child from=$cats}>
+		<tr class="<{cycle values="even,odd"}>">
+			<{if $child.cat_nb_album == 0}>
+				<td colspan="2">
+			<{else}>
+				<td>
+			<{/if}>
+
+			<!-- Category/album image -->
+			<!-- Si l'option d'affichage de la photo de la catégorie est activée, alors -->
+			<{if $disp_cat_img == 1 }>
+				<{if $child.cat_imgurl != "" }>
+					<div class="catThumb" style="float:left; margin-right:5px;">
+						<{if $child.cat_isalbum}>
+							<a href="public-<{$display_type}>.php?id=<{$child.cat_id}>"><img src="<{$child.cat_imgurl}>" alt="<{$child.cat_name}>" title="<{$child.cat_name}>" /></a>
+						<{else}>
+							<a href="public-categories.php?id=<{$child.cat_id}>"><img src="<{$child.cat_imgurl}>" alt="<{$child.cat_name}>" title="<{$child.cat_name}>" /></a>
+						<{/if}>
+					</div>
+				<{else}>
+					<{if $child.photo}>
+						<div class="catThumb" style="float:left; margin-right:5px;">
+							<{if $child.cat_isalbum}>
+								<a href="public-<{$display_type}>.php?id=<{$child.cat_id}>"><img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$child.photo.photo_name}>" alt="<{$child.photo.photo_desc}>" title="<{$child.photo.photo_desc}>" /></a>
+							<{else}>
+								<a href="public-categories.php?id=<{$child.cat_id}>"><img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$child.photo.photo_name}>" alt="<{$child.photo.photo_desc}>" title="<{$child.photo.photo_desc}>" /></a>
+							<{/if}>
+						</div>
+					<{/if}>
+				<{/if}>
+			<{else}>
+				<{if $child.photo}>
+					<div class="catThumb" style="float:left; margin-right:5px;">
+						<{if $child.cat_isalbum}>
+							<a href="public-<{$display_type}>.php?id=<{$child.cat_id}>"><img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$child.photo.photo_name}>" alt="<{$child.photo.photo_desc}>" title="<{$child.photo.photo_desc}>" /></a>
+						<{else}>
+							<a href="public-categories.php?id=<{$child.cat_id}>"><img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$child.photo.photo_name}>" alt="<{$child.photo.photo_desc}>" title="<{$child.photo.photo_desc}>" /></a>
+						<{/if}>
+					</div>
+				<{/if}>
+			<{/if}>
+
+			<{if $child.cat_isalbum}>
+				<a href="public-<{$display_type}>.php?id=<{$child.cat_id}>"><{$child.cat_name}></a><br /><{$child.cat_desc}></td>
+			<{else}>
+				<a href="public-categories.php?id=<{$child.cat_id}>"><{$child.cat_name}></a><br /><{$child.cat_desc}></td>
+			<{/if}>
+			<{if $child.cat_nb_album != 0}>
+			<td style="text-align:center;"><{$child.cat_nb_album}></td>
+			<{/if}>
+			<td style="text-align:center;"><{$child.cat_nb_photo}></td>
+		</tr>
+		<{/foreach}>
+	    <!--<tr class="even">
+			<td><a href="user-categories.php">User categories</a><br />You can find here all user categories</td>
+		</tr>-->
+	</table>
+
+	<{include file='db:system_notification_select.html'}>
+</div>

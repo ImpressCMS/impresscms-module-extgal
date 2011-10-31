@@ -1,0 +1,79 @@
+#extgallery table.outer {
+	margin-top: 10px;
+}
+
+#extgallery .pageNav {
+	text-align: right;
+	margin-top: 5px;
+}
+
+#extgallery .catThumb {
+	float: left;
+	margin-right: 5px;
+}
+
+#extgallery #thumbTable td {
+	padding: 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#extgallery #rateTable td {
+	text-align: center;
+}
+
+#extgallery #photoNavLeft {
+	width: 33%;
+}
+
+#extgallery #photoNavCenter {
+	text-align:center;
+}
+
+#extgallery #photoNavRight {
+	width: 33%;
+	text-align:right;
+}
+
+#extgallery img.thumb {
+	padding: 5px;
+	border: 1px #778899 solid;
+}
+
+
+#extgallery img.thumb:hover {
+    padding: 4px;
+	border: 2px #3388CC solid;
+}
+
+#extgallery #photo {
+    text-align: center;
+}
+
+#extgallery #photo img {
+	margin-top: 10px;
+	padding: 5px;
+	border: 1px #778899 solid;
+}
+
+#extgallery #photo img:hover {
+    padding: 4px;
+	border: 2px #3388CC solid;
+}
+
+#extgallery p.photoTitle {
+	font-weight: bold;
+	text-align: center;
+}
+
+#extgallery p.photoDesc {
+    text-align: center;
+}
+
+#extgallery p.photoExtra {
+    text-align: center;
+}
+
+#extgallery div.adminLink {
+    text-align: center;
+}

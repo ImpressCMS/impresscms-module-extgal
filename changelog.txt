@@ -1,0 +1,322 @@
+============================
+06/25/2009: Reversioned - 1.0 (Mr. Theme - http://www.mrtheme.com)
+============================
+- Ported to ICMS
+- Removed Mootools
+- Added Jquery
+- fixed all inherited bugs
+
+
+============================
+2009/21/06: Version 1.0.8
+============================
+
+- Add plugin system
+- Fix bug : Block slideshow call not available image that generate lot off 404 HTTP error
+- Fix bug : Standard upload page black page after upload
+
+
+============================
+2009/18/02: Version 1.0.7
+============================
+
+- Fix bug : SlideShow don't work if photo description contains quotes
+- Fix bug : HTML is displayed on slideshow if description contains HTML
+- Fix bug : All XOOPS tag don't work if gallery extention is installed
+- Fix bug : Uploaded photo could be not displayed if the filename contains special caracter. Only letter, digit, dot, upper and lower bar are allowed now
+- Fix bug : Select standard upload don't work
+- Fix bug : alt attribute isn't updated by caption value on slideshow
+- Fix bug : Navigation don't work on photo page
+- Fix bug : Edit/Delete photo don't work on admin page with a lot of photo
+- Fix bug : Medium photo size is lower than defined on preferences if border isn't actived
+- Fix bug : Photos file wasn't deleted when the photo is deleted or category is droped
+- Optimize module memory usage to allow handling many categories. Work with php memory_limit parameter at 32 Mo and 962 categories
+- Slideshow image link in block now redirect to image and not album if Display type is set to album in module preferences
+
+
+============================
+2009/06/01: Version 1.0.6
+============================
+
+- Fix bug : An image is displayed by default for slideshow now
+- Fix bug : An image could be bigger than specified size if border is activated
+- Fix bug : index.html file isn't adedd to all uploads directory
+- Fix bug : Allowed memory size exhausted on photo pages when they are a lot of photo (thousand)
+- Fix bug : Allowed memory size exhausted on admin Permissions page when they are a lot of category
+- Fix bug : Error on installing top eCard slideShow block
+- Add a new page to submit photo by batch from user side (use a Java applet that need Java 1.5 or higer. See http://jupload.sourceforge.net/ for more info)
+- Change the upgrade script to display new version changelog and check if XOOPS version is supported by new module version
+
+
+Lang var change :
+
+admin.php
+_AM_EXTGALLERY_CHANGELOG (added)
+_AM_EXTGALLERY_EXTGALLERY_VERSION (added)
+
+blocks.php
+_MB_EXTGALLERY_ALL_CATEGORIES (added)
+
+main.php
+_MD_EXTGALLERY_APPLET_LANG (added)
+
+modinfo.php
+_MI_EXTGALLERY_ALBUM (added)
+_MI_EXTGAL_EXT_UPLOAD (added)
+_MI_EXTGAL_EXT_UPLOAD_DESC (added)
+_MI_EXTGALLERY_EXTENDED (added)
+_MI_EXTGALLERY_STANDARD (added)
+_MI_EXTGAL_B_RAND_DESC (removed)
+_MI_EXTGAL_B_LAST_DESC (removed)
+_MI_EXTGAL_B_MOST_DESC (removed)
+_MI_EXTGAL_B_TOPR_DESC (removed)
+_MI_EXTGAL_B_TOPE_DESC (removed)
+_MI_EXTGAL_B_RANDSS_DESC (removed)
+_MI_EXTGAL_B_LASTSS_DESC (removed)
+_MI_EXTGAL_B_MOSTSS_DESC (removed)
+_MI_EXTGAL_B_TOPRSS_DESC (removed)
+_MI_EXTGAL_B_TOPESS_DESC (removed)
+
+
+============================
+2008/17/12: Version 1.0.5
+============================
+
+- Fix bug : XOOPS version checker on index admin page don't work with XOOPS 2.3.x
+- Fix bug : cannot redeclare adminmenu() when XoopsInfo or ThAdmin is installed
+- Fix bug : Category not visible after upgrading to eXtGallery 1.0.4 or upper
+- Add Slideshow for album pages (see http://www.electricprism.com/aeron/slideshow/)
+  => Mootools 1.2 must be available on woll site
+  => Slideshow don't work if cache is activated on Slideshow block or Slideshow album pages
+- Add a feature to make a module update just by clicking on module admin side. The server will download, install files and update the module.
+- Add extention to use Hook hack. This extention is inegrated to XOOPS editor
+- Add a feature to rebuild thumb
+
+
+Lang var change :
+
+modinfo.php
+_MI_EXTGALLERY_SLIDESHOW (added)
+_MI_EXTGALLERY_EXTENTION (added)
+_MI_EXTGAL_DISP_TYPE (added)
+_MI_EXTGAL_DISP_TYPE_DESC (added)
+_MI_EXTGAL_B_RAND (added)
+_MI_EXTGAL_B_RAND_DESC (added)
+_MI_EXTGAL_B_LAST (added)
+_MI_EXTGAL_B_LAST_DESC (added)
+_MI_EXTGAL_B_MOST (added)
+_MI_EXTGAL_B_MOST_DESC (added)
+_MI_EXTGAL_B_TOPR (added)
+_MI_EXTGAL_B_TOPR_DESC (added)
+_MI_EXTGAL_B_TOPE (added)
+_MI_EXTGAL_B_TOPE_DESC (added)
+_MI_EXTGAL_B_RANDSS (added)
+_MI_EXTGAL_B_RANDSS_DESC (added)
+_MI_EXTGAL_B_LASTSS (added)
+_MI_EXTGAL_B_LASTSS_DESC (added)
+_MI_EXTGAL_B_MOSTSS (added)
+_MI_EXTGAL_B_MOSTSS_DESC (added)
+_MI_EXTGAL_B_TOPRSS (added)
+_MI_EXTGAL_B_TOPRSS_DESC (added)
+_MI_EXTGAL_B_TOPESS (added)
+_MI_EXTGAL_B_TOPESS_DESC (added)
+_MI_EXTGAL_M_QUALITY (added)
+_MI_EXTGAL_M_QUALITY_DESC (added)
+_MI_EXTGAL_T_QUALITY (added)
+_MI_EXTGAL_T_QUALITY_DESC (added)
+_MI_EXTGAL_NB_COLUMN_DESC (changed)
+_MI_EXTGAL_NB_LINE_DESC (changed)
+
+admin.php
+_AM_EXTGALLERY_SLIDESHOW_DELAY (added)
+_AM_EXTGALLERY_SLIDESHOW_DURATION (added)
+_AM_EXTGALLERY_SLIDESHOW_CONF (added)
+_AM_EXTGALLERY_TRANSTYPE (added)
+_AM_EXTGALLERY_DEFAULT (added)
+_AM_EXTGALLERY_FOLD (added)
+_AM_EXTGALLERY_KENBURNS (added)
+_AM_EXTGALLERY_PUSH (added)
+_AM_EXTGALLERY_EFFECT_TYPE (added)
+_AM_EXTGALLERY_QUAD (added)
+_AM_EXTGALLERY_CUBIC (added)
+_AM_EXTGALLERY_QUART (added)
+_AM_EXTGALLERY_QUINT (added)
+_AM_EXTGALLERY_EXPO (added)
+_AM_EXTGALLERY_CIRC (added)
+_AM_EXTGALLERY_SINE (added)
+_AM_EXTGALLERY_BACK (added)
+_AM_EXTGALLERY_BOUNCE (added)
+_AM_EXTGALLERY_ELASTIC (added)
+_AM_EXTGALLERY_EFFECT_OPTION (added)
+_AM_EXTGALLERY_IN (added)
+_AM_EXTGALLERY_OUT (added)
+_AM_EXTGALLERY_INOUT (added)
+_AM_EXTGALLERY_SS_THUMB (added)
+_AM_EXTGALLERY_SS_CAPTION (added)
+_AM_EXTGALLERY_SS_CONTROLLER (added)
+_AM_EXTGALLERY_UPDATE_INFO (added)
+_AM_EXTGALLERY_UPDATE_UPGRADE (added)
+_AM_EXTGALLERY_MD_FILE_DONT_EXIST (added)
+_AM_EXTGALLERY_LG_FILE_DONT_EXIST (added)
+_AM_EXTGALLERY_DOWN_DONE (added)
+_AM_EXTGALLERY_INSTALL (added)
+_AM_EXTGALLERY_MD_FILE_DONT_EXIST_SHORT (added)
+_AM_EXTGALLERY_INSTALL_DONE (added)
+_AM_EXTGALLERY_EXTENTION_INFO (added)
+_AM_EXTGALLERY_EXTENTION_NOT_INSTALLED (added)
+_AM_EXTGALLERY_INSTALL_EXTENTION (added)
+_AM_EXTGALLERY_EXTENTION_OK (added)
+_AM_EXTGALLERY_EXTENTION_NOTICE (added)
+_AM_EXTGALLERY_EXT_FILE_DONT_EXIST (added)
+_AM_EXTGALLERY_EXT_FILE_DONT_EXIST_SHORT (added)
+_AM_EXTGALLERY_EXTENTION_INSTALLED (added)
+_AM_EXTGALLERY_THUMB_REBUILDED (added)
+_AM_EXTGALLERY_REBUILD_THUMB (added)
+_AM_EXTGALLERY_REBUILD_THUMB_INFO (added)
+_AM_EXTGALLERY_SLIDESHOW_NOT_ENABLE (added)
+
+blocks.php
+_MB_EXTGALLERY_SLIDESHOW_DELAY (added)
+_MB_EXTGALLERY_SLIDESHOW_DURATION (added)
+_MB_EXTGALLERY_SLIDESHOW_CONF (added)
+_MB_EXTGALLERY_TRANSTYPE (added)
+_MB_EXTGALLERY_DEFAULT (added)
+_MB_EXTGALLERY_FOLD (added)
+_MB_EXTGALLERY_KENBURNS (added)
+_MB_EXTGALLERY_PUSH (added)
+_MB_EXTGALLERY_EFFECT_TYPE (added)
+_MB_EXTGALLERY_QUAD (added)
+_MB_EXTGALLERY_CUBIC (added)
+_MB_EXTGALLERY_QUART (added)
+_MB_EXTGALLERY_QUINT (added)
+_MB_EXTGALLERY_EXPO (added)
+_MB_EXTGALLERY_CIRC (added)
+_MB_EXTGALLERY_SINE (added)
+_MB_EXTGALLERY_BACK (added)
+_MB_EXTGALLERY_BOUNCE (added)
+_MB_EXTGALLERY_ELASTIC (added)
+_MB_EXTGALLERY_EFFECT_OPTION (added)
+_MB_EXTGALLERY_IN (added)
+_MB_EXTGALLERY_OUT (added)
+_MB_EXTGALLERY_INOUT (added)
+_MB_EXTGALLERY_SS_THUMB (added)
+_MB_EXTGALLERY_SS_CAPTION (added)
+_MB_EXTGALLERY_SLIDESHOW_NUMBER (added)
+_MB_EXTGALLERY_NB_PHOTO_BY_SLIDESHOW (added)
+
+extention.php (added file)
+
+============================
+2008/04/03: Version 1.0.4
+============================
+
+- Allow HTML for desc and extra field
+- Display extra info when it's enabled
+- Display category regarding upload perm on the upload form
+- Add an hide feature for album. You could now have an user hidden album to put image for your site presentation
+
+============================
+2007/21/07: Version 1.0.3
+============================
+
+- Fix language constant issue on admin pages
+- Display Warning message on watermarking conf page when Freetype isn't supported and disable Watermarking to don't have blank page error
+
+
+============================
+2007/06/07: Version 1.0.2
+============================
+
+- Fix bug : eCard counter updated twice for one sent
+- Fix bug : error when using username for watermarking
+- Fix bug : language constant wasn't use on admin side (permission page)
+- Add a directory permission checker to display error message if eXtGallery photo directories isn't writable
+- Add title for photos and choice to display or not (jbboschung)
+- Add weight for photos. All request SQL order (new criteria : ASC) by weight now (jbboschung)
+- Add image url for category and choice to display or not. Display image url witdh = 100 px. (jbboschung)
+- Note : Image url is priority as 'Miniature' of category. If not image url, the 'Miniature' image was display.
+
+
+============================
+2006/26/11: Version 1.0.1
+============================
+
+- Fix bug : eCard not sent
+- Add a new criteria order for category. Category name is used after weight
+- Fix bug : blank page when an anonymous rate a photo
+- Fix bug : only one anonymous user could rate a photo
+- Fix bug : Medium photo not resized when border or watermark are enable
+- Add 5 watermark position : Top center, Bottom center, Left center, Right center and Center center
+- Add a check to filter only TTF font on the font folder and photo on the batch folder
+
+
+============================
+2006/05/11: Version 1.0.0
+============================
+
+- Add a function to remove accentuated characters in file name to fix non diplayed photo bug
+- Fix blank page when a Anonymous user submit a photo
+- Fix a blank page when approve or delete a pending photo
+
+
+============================
+2006/25/10: Version 0.1.8
+============================
+
+- Fix a blank page bug on public-viewecard page
+- Add a redirect on Edit/Delete photo if they aren't photo in this category
+- Change the default watermark position
+- Add an option for enable or disable rating feature
+- Add admin links on photo page
+- Fix a blank page when modify a photo by the public side without changing photo category
+- Add an error message when an user try to vote for an already rated photo
+- Modify the image captcha (send eCard) to make it more readable
+
+
+============================
+2006/11/10: Version 0.1.7
+============================
+
+- Fix a bug that allow access to restricted album by access it directly
+- Fix a bug in synchronize method count
+- Add the feature to view all photo submitted by one user
+- Fix a bug that allow access to photo in restricted album by access it directly
+- Fix an error on watermark/border page
+- Move the "Upload public" sub menu link to language file
+- Refactor the table header language on index and public-categories pages
+- Fix a bug that allow access to unapproved photo by access it directly
+- Add test to prevent error when form are submitted with wrong argument
+
+============================
+2006/08/10: Version 0.1.6
+============================
+
+- Fix error when delete only one pending photo on admin side
+- Fix blank page on watermark configuration page
+- Fix "Sorry you don't have permission ..." error when sumiting an eCard
+- Add a check on module install for eXtGallery uploads directory
+- Fix weight don't sav when a category was created
+- Fix photo counter isn't updated when a photo is added on the user side
+- Fix photo and album counter bug
+- Fix Javascript error when edit photo on admin side
+- Fix a mistake on display preferences page
+- Performance optimization on photo treatment
+- Add an onUpdate function to synchronize the database on module update
+- Fix "File size too large" error when uploading photo
+
+
+============================
+2006/01/10: Version 0.1.5
+============================
+
+- Fix typo bug on Admin Permissions page
+- Add redirection message on admin side
+- Fix blank page error when an Anonymous try to send an eCard
+- Add a "weight" property to category
+- Add watermark feature, now you can choose to display text or submitter user name on watermark
+- Fix wrong module name on breadcumb
+- Fix a bug on the update rating counter
+- Add a check to prevent Maximum execution time exceeded when photo is added by batch
+- Display the number of album and photo of each category
+- Fix wrong language string on eCard
+- Fix a bug with IE. Now, parent category isn't displayed on the category select with IE

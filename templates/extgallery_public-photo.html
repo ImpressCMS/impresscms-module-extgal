@@ -1,0 +1,125 @@
+<div id="extgallery">
+	<a href="<{xoAppUrl modules/extgallery/}>"><{$extgalleryName}></a><{foreachq item=node from=$catPath name=breadcrumb}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <a href="public-<{if $node.cat_isalbum}><{$display_type}><{else}>categories<{/if}>.php?id=<{$node.cat_id}>"><{$node.cat_name}></a><{/foreach}> <img src="images/breadcrumb-link.gif" alt="BreadCrumb" /> <{$photo.photo_title}>
+
+	<table id="photoNav" class="outer">
+		<tr>
+			<td id="photoNavLeft" class="even"><{if $prevId != 0}><a href="public-photo.php?photoId=<{$prevId}>#photoNav">&lt;&lt; <{$lang.preview}></a><{else}>&nbsp;<{/if}></td>
+			<td id="photoNavCenter" class="even"><b><{$currentPhoto}></b> <{$lang.of}> <b><{$totalPhoto}></b></td>
+			<td id="photoNavRight" class="even"><{if $nextId != 0}><a href="public-photo.php?photoId=<{$nextId}>#photoNav"><{$lang.next}> &gt;&gt;</a><{else}>&nbsp;<{/if}></td>
+		</tr>
+	</table>
+
+	<div id="photo">
+	<{if $photo.photo_serveur}>
+	<img src="<{$photo.photo_serveur}><{$photo.photo_name}>" alt="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" />
+	<{else}>
+	<img src="<{$xoops_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>" alt="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" />
+	<{/if}>
+	</div>
+
+	<!-- Start Photo Title -->
+	<{if $disp_ph_title == 1 }>
+		<p class="photoTitle"><b><{$photo.photo_title}></b></p>
+	<{/if}>
+	<!-- End Photo Title -->
+
+	<!-- Start Photo desc -->
+	<p class="photoDesc">
+	<{$photo.photo_desc}>
+	</p>
+	<!-- End Photo desc -->
+
+	<{if $enableExtra}>
+	<!-- Start extra field -->
+	<p class="photoExtra"><{$photo.photo_extra}></p>
+	<!-- End extra filed -->
+	<{/if}>
+
+	<{foreachq item=pluginLink from=$pluginPhotoAlbumLink}>
+	<p style="text-align: center;">
+        <a href="<{$pluginLink.link}><{$photo.photo_id}>" alt="<{$pluginLink.name}>"><{$pluginLink.name}></a>
+    </p>
+	<{/foreach}>
+	<{foreachq item=pluginLink from=$photo.link}>
+	<p style="text-align: center;">
+        <a href="<{$pluginLink.link}><{$photo.photo_id}>" alt="<{$pluginLink.name}>"><{$pluginLink.name}></a>
+    </p>
+	<{/foreach}>
+
+	<!-- Start Admin link -->
+	<{if $xoops_isadmin}>
+	<div class="adminLink">
+		<a href="public-modify.php?op=edit&id=<{$photo.photo_id}>"><img src="images/edit.gif" /></a>&nbsp;
+		<a href="public-modify.php?op=delete&id=<{$photo.photo_id}>"><img src="images/delete.gif" /></a>
+	</div>
+	<{/if}>
+	<!-- End Admin link -->
+
+	<!-- Start Rating part -->
+	<{if $canRate}>
+	<table id="rateTable" class="outer">
+	<tr>
+		<th colspan="5"><{$lang.voteFor}></th>
+	</tr>
+	<tr>
+		<td class="even"><a href="public-rating.php?id=<{$photo.photo_id}>&amp;rate=1"><img src="images/rating_1.gif" alt="<{$lang.voteFor}> : 1" title="<{$lang.voteFor}> : 1" /></a></td>
+		<td class="even"><a href="public-rating.php?id=<{$photo.photo_id}>&amp;rate=2"><img src="images/rating_2.gif" alt="<{$lang.voteFor}> : 2" title="<{$lang.voteFor}> : 2" /></a></td>
+		<td class="even"><a href="public-rating.php?id=<{$photo.photo_id}>&amp;rate=3"><img src="images/rating_3.gif" alt="<{$lang.voteFor}> : 3" title="<{$lang.voteFor}> : 3" /></a></td>
+		<td class="even"><a href="public-rating.php?id=<{$photo.photo_id}>&amp;rate=4"><img src="images/rating_4.gif" alt="<{$lang.voteFor}> : 4" title="<{$lang.voteFor}> : 4" /></a></td>
+		<td class="even"><a href="public-rating.php?id=<{$photo.photo_id}>&amp;rate=5"><img src="images/rating_5.gif" alt="<{$lang.voteFor}> : 5" title="<{$lang.voteFor}> : 5" /></a></td>
+	</tr>
+	</table>
+	<{/if}>
+	<!-- End Rating part -->
+
+	<!-- Start Photo Information -->
+	<table class="outer">
+	<tr>
+		<th colspan="2"><{$lang.photoInfo}></th>
+	</tr>
+	<tr>
+		<td class="even"><{$lang.submitter}> : <a href="<{$xoops_url}>/userinfo.php?uid=<{$photo.user.uid}>"><{$photo.user.uname}></a>, <a href="<{$xoops_url}>/modules/extgallery/public-useralbum.php?id=<{$photo.user.uid}>"><{$lang.allPhotoBy}> <{$photo.user.uname}></a></td>
+		<td class="even"><{$lang.view}> : <{$photo.photo_hits}> <{$lang.hits}></td>
+	</tr>
+	<tr>
+		<td class="even"><{$lang.resolution}> : <{$photo.photo_res_x}> x <{$photo.photo_res_y}> <{$lang.pixels}><br /><{$lang.fileSize}> : <{$photo.photo_size}> Kb</td>
+		<td class="even"><{$lang.added}> : <{$photo.photo_date}></td>
+	</tr>
+	<tr>
+		<td class="even"><{$lang.score}> : <img src="images/rating_<{$rating}>.gif" /></td>
+		<td class="even"><{$photo.photo_nbrating}> <{$lang.votes}></td>
+	</tr>
+	<{if $canDownload}>
+	<tr>
+		<td class="even"><a href="public-download.php?id=<{$photo.photo_id}>"><{$lang.downloadOrig}> <img src="images/download.gif" /></a></td>
+		<td class="even"><{$photo.photo_download}> <{$lang.donwloads}></td>
+	</tr>
+	<{/if}>
+	<{if $canSendEcard}>
+	<tr>
+		<td class="even"><a href="public-sendecard.php?id=<{$photo.photo_id}>"><{$lang.sendEcard}> <img src="images/ecard.gif" /></a></td>
+		<td class="even"><{$photo.photo_ecard}> <{$lang.sends}></td>
+	</tr>
+	<{/if}>
+	</table>
+	<!-- End Photo Information -->
+
+	<div style="text-align: center; padding: 3px; margin: 3px;">
+	  <{$commentsnav}>
+	  <{$lang_notice}>
+	</div>
+
+	<div style="margin: 3px; padding: 3px;">
+	<!-- start comments loop -->
+	<{if $comment_mode == "flat"}>
+	  <{include file="db:system_comments_flat.html"}>
+	<{elseif $comment_mode == "thread"}>
+	  <{include file="db:system_comments_thread.html"}>
+	<{elseif $comment_mode == "nest"}>
+	  <{include file="db:system_comments_nest.html"}>
+	<{/if}>
+	<!-- end comments loop -->
+	</div>
+
+	<{include file='db:system_notification_select.html'}>
+</div>
