@@ -66,7 +66,7 @@ $pageNav = new icms_view_PageNav($photoHandler->getAlbumCount($catId), icms::$mo
 $xoopsTpl->assign('pageNav', $pageNav->renderNav());
 
 if(isset($catObj)) {
-	$xoopsTpl->assign('xoops_pagetitle', $catObj->getVar('cat_name'));
+	$xoopsTpl->assign('icms_pagetitle', $catObj->getVar('cat_name'));
 	$xoTheme->addMeta('meta','description',$catObj->getVar('cat_desc'));
 }
 $xoTheme->addStylesheet('modules/extgallery/include/style.css');

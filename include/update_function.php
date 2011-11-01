@@ -42,8 +42,8 @@ function xoops_module_update_extgallery(&$xoopsModule, $oldVersion = null) {
 	// Set display parmission for all XOOPS base Groups
 	$sql = "SELECT cat_id FROM `".$db->prefix('extgallery_publiccat')."`;";
 	$result = $db->query($sql);
-	$module_id = $xoopsModule->getVar('mid');
-	$gpermHandler = xoops_gethandler('groupperm');
+	$module_id = icms::$module->getVar('mid');
+	$gpermHandler = icms::handler('icms_member_groupperm');
 	while($cat = $db->fetchArray($result)) {
 		$gpermHandler->addRight('public_displayed', $cat['cat_id'], XOOPS_GROUP_ADMIN, $module_id);
 		$gpermHandler->addRight('public_displayed', $cat['cat_id'], XOOPS_GROUP_USERS, $module_id);

@@ -1,8 +1,8 @@
 <?php
 
 require '../../mainfile.php';
-include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
-include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
+include_once ICMS_ROOT_PATH.'/class/icms_form_elements_loader.php';
 
 if(isset($_POST['step'])) {
 	$step = $_POST['step'];
@@ -11,7 +11,7 @@ if(isset($_POST['step'])) {
 }
 
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(count($permHandler->getAuthorizedPublicCat($xoopsUser, 'public_upload')) < 1) {
+if(count($permHandler->getAuthorizedPublicCat(icms::$user, 'public_upload')) < 1) {
 	redirect_header("index.php", 3, _MD_EXTGALLERY_NOPERM);
 	exit;
 }
@@ -20,7 +20,7 @@ switch($step) {
 
 	case 'enreg':
 
-	    $photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	    $photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	    $result = $photoHandler->postPhotoTraitement('photo_file', false);
 
@@ -40,29 +40,29 @@ switch($step) {
 	case 'default':
 	default:
 
-		include_once XOOPS_ROOT_PATH.'/header.php';
+		include_once ICMS_ROOT_PATH.'/header.php';
 
-		$catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
+		$catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 
-		$form = new XoopsThemeForm(_MD_EXTGALLERY_PUBLIC_UPLOAD, 'add_photo', 'public-upload.php', 'post', true);
+		$form = new icms_form_Theme(_MD_EXTGALLERY_PUBLIC_UPLOAD, 'add_photo', 'public-upload.php', 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
-		$form->addElement(new XoopsFormLabel(_MD_EXTGALLERY_ALBUMS, $catHandler->getLeafSelect('cat_id', false, 0, "", "public_upload")));
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_PHOTO_TITLE, 'photo_title', '50', '150'),false);
-		$form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_DESC, 'photo_desc'));
-		$form->addElement(new XoopsFormFile(_MD_EXTGALLERY_PHOTO, 'photo_file', 3145728),false);
-		if($icmsModuleConfig['display_extra_field']) {
-			$form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_EXTRA_INFO, "photo_extra"));
+		$form->addElement(new icms_form_elements_Label(_MD_EXTGALLERY_ALBUMS, $catHandler->getLeafSelect('cat_id', false, 0, "", "public_upload")));
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_PHOTO_TITLE, 'photo_title', '50', '150'),false);
+		$form->addElement(new icms_form_elements_TextArea(_MD_EXTGALLERY_DESC, 'photo_desc'));
+		$form->addElement(new icms_form_elements_File(_MD_EXTGALLERY_PHOTO, 'photo_file', 3145728),false);
+		if(icms::$module->config['display_extra_field']) {
+			$form->addElement(new icms_form_elements_TextArea(_MD_EXTGALLERY_EXTRA_INFO, "photo_extra"));
 		}
 
-		$plugin = xoops_getmodulehandler('plugin', 'extgallery');
+		$plugin = icms_getModuleHandler('plugin', 'extgallery');
 		$plugin->triggerEvent('photoForm', $form);
 
-		$form->addElement(new XoopsFormHidden("step", 'enreg'));
-		$form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
+		$form->addElement(new icms_form_elements_Hidden("step", 'enreg'));
+		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
 
 		$form->display();
 
-		include(XOOPS_ROOT_PATH."/footer.php");
+		include(ICMS_ROOT_PATH."/footer.php");
 
 		break;
 

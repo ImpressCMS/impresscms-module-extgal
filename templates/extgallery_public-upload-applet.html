@@ -30,8 +30,8 @@
     if (_ie == true) document.writeln('<object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" WIDTH = "0" HEIGHT = "0" NAME = "JUploadApplet"  codebase="http://java.sun.com/update/1.5.0/jinstall-1_5-windows-i586.cab#Version=5,0,0,3"><noembed><xmp>');
     else if (_ns == true && _ns6 == false) document.writeln('<embed ' +
 	    'type="application/x-java-applet;version=1.5" \
-            CODEBASE = "<{$xoops_url}>/modules/extgallery/include/applet" \
-            ARCHIVE = "<{$xoops_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" \
+            CODEBASE = "<{$icms_url}>/modules/extgallery/include/applet" \
+            ARCHIVE = "<{$icms_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" \
             CODE = "wjhk.jupload2.EmptyApplet" \
             NAME = "JUploadApplet" \
             WIDTH = "0" \
@@ -41,7 +41,7 @@
 	    'scriptable=false ' +
 	    'pluginspage="http://java.sun.com/products/plugin/index.html#download"><noembed><xmp>');
 //--></script>
-<applet CODEBASE = "<{$xoops_url}>/modules/extgallery/include/applet" ARCHIVE = "<{$xoops_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" CODE = "wjhk.jupload2.EmptyApplet" WIDTH = "0" HEIGHT = "0" NAME = "JUploadApplet"></xmp>
+<applet CODEBASE = "<{$icms_url}>/modules/extgallery/include/applet" ARCHIVE = "<{$icms_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" CODE = "wjhk.jupload2.EmptyApplet" WIDTH = "0" HEIGHT = "0" NAME = "JUploadApplet"></xmp>
     <PARAM NAME = CODE VALUE = "wjhk.jupload2.EmptyApplet" >
     <PARAM NAME = ARCHIVE VALUE = "wjhk.jupload.jar" >
     <PARAM NAME = NAME VALUE = "JUploadApplet" >
@@ -58,9 +58,9 @@ Java 1.5 or higher plugin required.
 </embed>
 </object>
 
-  <applet codebase="<{$xoops_url}>/modules/extgallery/include/applet" code="wjhk.jupload2.JUploadApplet"
-  archive="<{$xoops_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" width="640" height="600" alt="">
-  <param name="postURL" value="<{$xoops_url}>/modules/extgallery/public-post-applet.php" />
+  <applet codebase="<{$icms_url}>/modules/extgallery/include/applet" code="wjhk.jupload2.JUploadApplet"
+  archive="<{$icms_url}>/modules/extgallery/include/applet/wjhk.jupload.jar" width="640" height="600" alt="">
+  <param name="postURL" value="<{$icms_url}>/modules/extgallery/public-post-applet.php" />
   <param name="uploadPolicy" value="PictureUploadPolicy" />
   <param name="maxChunkSize" value="500000" />
   <param name="nbFilesPerRequest" value="1" />

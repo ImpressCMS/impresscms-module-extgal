@@ -101,7 +101,7 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
 	}
 
 	function nbPhoto(&$cat) {
-		$criteria = new Criteria('cat_id',$cat->getVar('cat_id'));
+		$criteria = new icms_db_criteria_Item('cat_id',$cat->getVar('cat_id'));
 		return $this->getCount($criteria);
 	}
 

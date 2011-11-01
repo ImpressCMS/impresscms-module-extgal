@@ -2,7 +2,7 @@
 
 require '../../mainfile.php';
 
-$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 $result = $photoHandler->postPhotoTraitement('File0');
 

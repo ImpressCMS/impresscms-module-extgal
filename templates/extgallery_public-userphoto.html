@@ -12,7 +12,7 @@
 	<{if $photo.photo_serveur}>
 	<img src="<{$photo.photo_serveur}><{$photo.photo_name}>" alt="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" />
 	<{else}>
-	<img src="<{$xoops_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>" alt="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" />
+	<img src="<{$icms_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>" alt="<{$photo.photo_desc}>" title="<{$photo.photo_desc}>" />
 	<{/if}>
 	</div>
 	
@@ -57,7 +57,7 @@
 		<th colspan="2"><{$lang.photoInfo}></th>
 	</tr>
 	<tr>
-		<td class="even"><{$lang.submitter}> : <a href="<{$xoops_url}>/userinfo.php?uid=<{$photo.user.uid}>"><{$photo.user.uname}></a>, <a href="<{$xoops_url}>/modules/extgallery/public-useralbum.php?id=<{$photo.user.uid}>"><{$lang.allPhotoBy}> <{$photo.user.uname}></a></td>
+		<td class="even"><{$lang.submitter}> : <a href="<{$icms_url}>/userinfo.php?uid=<{$photo.user.uid}>"><{$photo.user.uname}></a>, <a href="<{$icms_url}>/modules/extgallery/public-useralbum.php?id=<{$photo.user.uid}>"><{$lang.allPhotoBy}> <{$photo.user.uname}></a></td>
 		<td class="even"><{$lang.view}> : <{$photo.photo_hits}> <{$lang.hits}></td>
 	</tr>
 	<tr>

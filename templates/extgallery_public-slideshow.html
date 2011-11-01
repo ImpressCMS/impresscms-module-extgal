@@ -8,7 +8,7 @@ $('div.slideshow').crossSlide({
 speed: 20,
 fade: 1
 }, [
-<{foreachq item=photo from=$photos name=slideShowPhotos}>{src: '<{$xoops_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>', dir: '<{cycle values="up,down,left,right"}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,
+<{foreachq item=photo from=$photos name=slideShowPhotos}>{src: '<{$icms_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>', dir: '<{cycle values="up,down,left,right"}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,
 <{/if}><{/foreach}>
 ]);
 <{elseif $slideshow_transtype == 'kenburns'}>
@@ -17,7 +17,7 @@ fade: 1
 }, [
 <{foreachq item=photo from=$photos name=slideShowPhotos}>
 {
-src:  '<{$xoops_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>',
+src:  '<{$icms_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>',
 from: '<{cycle values="100% 80% 1x, top left, 100% 80% 1.5x, 100% 50%"}>',
 to:   '<{cycle values="100% 0% 1.7x, bottom right 1.5x, 80% 0% 1.1x, 30% 50% 1.5x"}>',
 time: <{cycle values="3,2"}>
@@ -29,7 +29,7 @@ $('#show').crossSlide({
 sleep: 2,
 fade: 1
 }, [
-<{foreachq item=photo from=$photos name=slideShowPhotos}>{ src: '<{$xoops_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}><{/foreach}>
+<{foreachq item=photo from=$photos name=slideShowPhotos}>{ src: '<{$icms_url}>/uploads/extgallery/public-photo/medium/<{$photo.photo_name}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}><{/foreach}>
 ]);
 <{/if}>
 });
@@ -38,14 +38,14 @@ fade: 1
 
 
  <div id="show" class="slideshow">
-  <img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photos[0].photo_name}>" alt="<{$photos[0].photo_desc|escape:'html'}>" />
+  <img src="<{$icms_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photos[0].photo_name}>" alt="<{$photos[0].photo_desc|escape:'html'}>" />
  </div>
 <div class="clear">&nbsp;</div>
 <div id="slideshow-caption" style="padding: 5px; text-align: center;"><{$photo.photo_desc}></div>
 <div class="clear">&nbsp;</div>
 <div id="thumbs" class="odd" style="display: inline-block; width: 100%; padding: 10px; margin: 0 auto;">
 <{foreachq item=photo from=$photos name=slideShowPhotos}>
-  <a href="public-photo.php?photoId=<{$photo.photo_id}>"><img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photo.photo_name}>" alt="<{$photos[0].photo_desc|escape:'html'}>" width="125" /></a>
+  <a href="public-photo.php?photoId=<{$photo.photo_id}>"><img src="<{$icms_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photo.photo_name}>" alt="<{$photos[0].photo_desc|escape:'html'}>" width="125" /></a>
 <{/foreach}>
 </div>
 <div style="margin-top: 115px;" />

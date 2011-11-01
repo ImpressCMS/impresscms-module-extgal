@@ -26,8 +26,7 @@
 //  ------------------------------------------------------------------------ //
 
 require '../../mainfile.php';
-include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
-include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 
 if(isset($_GET['id'])) {
 	$photoId = intval($_GET['id']);
@@ -42,12 +41,12 @@ if(isset($_POST['step'])) {
 	$step = 'default';
 }
 
-$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 $photo = $photoHandler->getPhoto($photoId);
 
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
 
-if(!$permHandler->isAllowed($xoopsUser, 'public_ecard', $photo->getVar('cat_id'))) {
+if(!$permHandler->isAllowed(icms::$user, 'public_ecard', $photo->getVar('cat_id'))) {
 	redirect_header("index.php", 3, _MD_EXTGALLERY_NOPERM);
 	exit;
 }
@@ -56,18 +55,18 @@ switch($step) {
 	
 	case 'send':
 		
-		include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/php-captcha.inc.php';
+		include_once ICMS_ROOT_PATH.'/modules/extgallery/class/php-captcha.inc.php';
 		
 		// Enable captcha only if GD is Used
-		if($icmsModuleConfig['graphic_lib'] == 'GD') {
+		if(icms::$module->config['graphic_lib'] == 'GD') {
 			if (!PhpCaptcha::Validate($_POST['captcha'])) {
 				redirect_header("public-photo.php?photoId=".$photoId."#photoNav", 3, _MD_EXTGALLERY_CAPTCHA_ERROR);
 				exit;
 			}
 		}
 		
-		$ecardHandler = xoops_getmodulehandler('publicecard', 'extgallery');
-		$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+		$ecardHandler = icms_getModuleHandler('publicecard', 'extgallery');
+		$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 		
 		if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -98,32 +97,32 @@ switch($step) {
 	case 'default':
 	default:
 		
-		$GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-sendecard.html';
-		include XOOPS_ROOT_PATH.'/header.php';
+		$xoopsOption['template_main'] = 'extgallery_public-sendecard.html';
+		include ICMS_ROOT_PATH.'/header.php';
 		
 		if($photo->getVar('photo_serveur') != "") {
 			$photoUrl = $photo->getVar('photo_serveur')."thumb_".$photo->getVar('photo_name');
 		} else {
-			$photoUrl = XOOPS_URL."/uploads/extgallery/public-photo/thumb/thumb_".$photo->getVar('photo_name');
+			$photoUrl = ICMS_URL."/uploads/extgallery/public-photo/thumb/thumb_".$photo->getVar('photo_name');
 		}
 		
-		$fromName = is_a($xoopsUser, "XoopsUser") ? $xoopsUser->getVar('uname') : "";
-		$fromEmail = is_a($xoopsUser, "XoopsUser") ? $xoopsUser->getVar('email') : "";
+		$fromName = is_a(icms::$user, "XoopsUser") ? icms::$user->getVar('uname') : "";
+		$fromEmail = is_a(icms::$user, "XoopsUser") ? icms::$user->getVar('email') : "";
 		
-		$form = new XoopsThemeForm(_MD_EXTGALLERY_SEND_ECARD, 'send_ecard', 'public-sendecard.php', 'post', true);
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_FROM_NAME, 'ecard_fromname', '70', '255', $fromName),false);
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_FROM_EMAIL, 'ecard_fromemail', '70', '255', $fromEmail),false);
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_TO_NAME, 'ecard_toname', '70', '255', ''),false);
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_TO_EMAIL, 'ecard_toemail', '70', '255', ''),false);
-		$form->addElement(new XoopsFormText(_MD_EXTGALLERY_GREETINGS, 'ecard_greetings', '110', '255', ''),false);
-		$form->addElement(new XoopsFormTextArea(_MD_EXTGALLERY_DESC, 'ecard_desc', ''), false);
+		$form = new icms_form_Theme(_MD_EXTGALLERY_SEND_ECARD, 'send_ecard', 'public-sendecard.php', 'post', true);
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_FROM_NAME, 'ecard_fromname', '70', '255', $fromName),false);
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_FROM_EMAIL, 'ecard_fromemail', '70', '255', $fromEmail),false);
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_TO_NAME, 'ecard_toname', '70', '255', ''),false);
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_TO_EMAIL, 'ecard_toemail', '70', '255', ''),false);
+		$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_GREETINGS, 'ecard_greetings', '110', '255', ''),false);
+		$form->addElement(new icms_form_elements_TextArea(_MD_EXTGALLERY_DESC, 'ecard_desc', ''), false);
 		// Enable captcha only if GD is Used
-		if($icmsModuleConfig['graphic_lib'] == 'GD') {
-			$form->addElement(new XoopsFormText(_MD_EXTGALLERY_SECURITY, 'captcha', '10', '5', ''),false);
+		if(icms::$module->config['graphic_lib'] == 'GD') {
+			$form->addElement(new icms_form_elements_Text(_MD_EXTGALLERY_SECURITY, 'captcha', '10', '5', ''),false);
 		}
-		$form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
-		$form->addElement(new XoopsFormHidden("photo_id", $photoId));
-		$form->addElement(new XoopsFormHidden("step", 'send'));
+		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
+		$form->addElement(new icms_form_elements_Hidden("photo_id", $photoId));
+		$form->addElement(new icms_form_elements_Hidden("step", 'send'));
 		$form->assign($xoopsTpl);
 		
 		$xoopsTpl->assign('photo', $photoUrl);
@@ -137,7 +136,7 @@ switch($step) {
 		);
 		$xoopsTpl->assign('lang', $lang);
 		
-		include XOOPS_ROOT_PATH.'/footer.php';
+		include ICMS_ROOT_PATH.'/footer.php';
 		
 		break;
 

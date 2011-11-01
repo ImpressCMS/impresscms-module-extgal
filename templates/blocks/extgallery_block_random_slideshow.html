@@ -5,9 +5,9 @@
 	    var data_<{$block.uniqid}>_<{$smarty.foreach.slideShow.index}> = {
      <{foreachq item=photo from=$slideshow name=slideShowPhotos}>
      <{if $block.display_type == 'slideshow'}>
-     'thumb_<{$photo.photo_name}>': { caption: '<{$photo.photo_desc|escape:'quotes'}>', href: '<{$xoops_url}>/modules/extgallery/public-slideshow.php?id=<{$photo.cat_id}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}>
+     'thumb_<{$photo.photo_name}>': { caption: '<{$photo.photo_desc|escape:'quotes'}>', href: '<{$icms_url}>/modules/extgallery/public-slideshow.php?id=<{$photo.cat_id}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}>
      <{else}>
-     'thumb_<{$photo.photo_name}>': { caption: '<{$photo.photo_desc|escape:'quotes'}>', href: '<{$xoops_url}>/modules/extgallery/public-photo.php?photoId=<{$photo.photo_id}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}>
+     'thumb_<{$photo.photo_name}>': { caption: '<{$photo.photo_desc|escape:'quotes'}>', href: '<{$icms_url}>/modules/extgallery/public-photo.php?photoId=<{$photo.photo_id}>' }<{if ! $smarty.foreach.slideShowPhotos.last}>,<{/if}>
      <{/if}>
      
      <{/foreach}>
@@ -31,7 +31,7 @@
         width: 100,
         overlap: false,
         resize: false,
-        hu: '<{$xoops_url}>/uploads/extgallery/public-photo/thumb/'}
+        hu: '<{$icms_url}>/uploads/extgallery/public-photo/thumb/'}
       );
      }).delay(Math.random() * <{$block.delay}>);
      <{/foreach}>
@@ -45,7 +45,7 @@
 <{foreachq item=slideshow from=$block.slideshows name=slideShow}>
 <td style="text-align:center; vertical-align:middle;">
  <div id="extgallery-show-<{$block.uniqid}>_<{$smarty.foreach.slideShow.index}>" class="slideshow-block">
-  <img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$slideshow[0].photo_name}>" alt="<{$slideshow[0].photo_desc|escape:'html'}>" />
+  <img src="<{$icms_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$slideshow[0].photo_name}>" alt="<{$slideshow[0].photo_desc|escape:'html'}>" />
  </div>
 </td>
 <{/foreach}>
@@ -55,7 +55,7 @@
 <tr>
 <td style="text-align:center; vertical-align:middle;">
  <div id="extgallery-show-<{$block.uniqid}>_<{$smarty.foreach.slideShow.index}>" class="slideshow-block">
-  <img src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$slideshow[0].photo_name}>" alt="<{$slideshow[0].photo_desc|escape:'html'}>" />
+  <img src="<{$icms_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$slideshow[0].photo_name}>" alt="<{$slideshow[0].photo_desc|escape:'html'}>" />
  </div>
 </td>
 </tr>

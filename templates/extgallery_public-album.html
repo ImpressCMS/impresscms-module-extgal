@@ -28,7 +28,7 @@
 				<{if $photos[photo].photo_serveur && $photos[photo].photo_name}>
 				<a href="public-photo.php?photoId=<{$photos[photo].photo_id}>#photoNav"><img class="thumb" src="<{$photos[photo].photo_serveur}>thumb_<{$photos[photo].photo_name}>" alt="<{$photos[photo].photo_desc}>" title="<{$photos[photo].photo_desc}>" /></a>
 				<{elseif $photos[photo].photo_name}>
-				<a href="public-photo.php?photoId=<{$photos[photo].photo_id}>#photoNav"><img class="thumb" src="<{$xoops_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photos[photo].photo_name}>" alt="<{$photos[photo].photo_desc}>" title="<{$photos[photo].photo_desc}>" /></a>
+				<a href="public-photo.php?photoId=<{$photos[photo].photo_id}>#photoNav"><img class="thumb" src="<{$icms_url}>/uploads/extgallery/public-photo/thumb/thumb_<{$photos[photo].photo_name}>" alt="<{$photos[photo].photo_desc}>" title="<{$photos[photo].photo_desc}>" /></a>
 				<{/if}>
 
 				<!-- Photo Title -->
@@ -46,7 +46,7 @@
 				<!-- End Comment count -->
 
 				<!-- Start Submitter link -->
-				<div><a href="<{$xoops_url}>/userinfo.php?uid=<{$photos[photo].user.uid}>"><{$photos[photo].user.uname}></a></div>
+				<div><a href="<{$icms_url}>/userinfo.php?uid=<{$photos[photo].user.uid}>"><{$photos[photo].user.uname}></a></div>
 				<!-- End Submitter link -->
 
 				<{if $enableRating}>

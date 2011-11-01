@@ -27,8 +27,8 @@
 
 require '../../mainfile.php';
 
-$GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-viewecard.html';
-include XOOPS_ROOT_PATH.'/header.php';
+$xoopsOption['template_main'] = 'extgallery_public-viewecard.html';
+include ICMS_ROOT_PATH.'/header.php';
 
 $myts = MyTextSanitizer::getInstance();
 
@@ -38,7 +38,7 @@ if(isset($_GET['id'])) {
 	$ecardId = 0;
 }
 
-$ecardHandler = xoops_getmodulehandler('publicecard', 'extgallery');
+$ecardHandler = icms_getModuleHandler('publicecard', 'extgallery');
 
 $ecardObj = $ecardHandler->getEcard($ecardId);
 
@@ -51,7 +51,7 @@ if(!$ecardObj) {
 $ecard = $ecardHandler->objectToArray($ecardObj,array('photo_id'));
 
 if($ecard['photo']['photo_serveur'] == "") {
-	$ecard['photoUrl'] = XOOPS_URL.'/uploads/extgallery/public-photo/medium/'.$ecard['photo']['photo_name'];
+	$ecard['photoUrl'] = ICMS_URL.'/uploads/extgallery/public-photo/medium/'.$ecard['photo']['photo_name'];
 } else {
 	$ecard['photoUrl'] = $ecard['photo']['photo_serveur'].$ecard['photo']['photo_name'];
 }
@@ -64,6 +64,6 @@ $lang = array(
 );
 $xoopsTpl->assign('lang', $lang);
 
-include XOOPS_ROOT_PATH.'/footer.php';
+include ICMS_ROOT_PATH.'/footer.php';
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
 require '../../mainfile.php';
-include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 
-$GLOBALS['xoopsOption']['template_main'] = 'extgallery_public-userphoto.html';
-include XOOPS_ROOT_PATH.'/header.php';
+$xoopsOption['template_main'] = 'extgallery_public-userphoto.html';
+include ICMS_ROOT_PATH.'/header.php';
 
 if(!isset($_GET['photoId'])) {
 	$photoId = 0;
@@ -12,9 +12,9 @@ if(!isset($_GET['photoId'])) {
 	$photoId = intval($_GET['photoId']);
 }
 
-$catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
-$ratingHandler = xoops_getmodulehandler('publicrating', 'extgallery');
+$catHandler = icms_getModuleHandler('publiccat', 'extgallery');
+$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
+$ratingHandler = icms_getModuleHandler('publicrating', 'extgallery');
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
 
 $photoObj = $photoHandler->getPhoto($photoId);
@@ -29,7 +29,7 @@ $photo = $photoHandler->objectToArray($photoObj,array('cat_id', 'uid'));
 
 // Check the category access permission
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if(!$permHandler->isAllowed($xoopsUser, 'public_access', $photo['cat']['cat_id'])) {
+if(!$permHandler->isAllowed(icms::$user, 'public_access', $photo['cat']['cat_id'])) {
 	redirect_header("index.php", 3, _NOPERM);
 	exit;
 }
@@ -97,14 +97,14 @@ $lang = array(
 		);
 $xoopsTpl->assign('lang', $lang);
 
-$xoopsTpl->assign('enableExtra', $icmsModuleConfig['display_extra_field']);
-$xoopsTpl->assign('canRate', $permHandler->isAllowed($xoopsUser, 'public_rate', $photo['cat']['cat_id']));
-$xoopsTpl->assign('canSendEcard', $permHandler->isAllowed($xoopsUser, 'public_ecard', $photo['cat']['cat_id']));
-$xoopsTpl->assign('canDownload', $permHandler->isAllowed($xoopsUser, 'public_download', $photo['cat']['cat_id']));
+$xoopsTpl->assign('enableExtra', icms::$module->config['display_extra_field']);
+$xoopsTpl->assign('canRate', $permHandler->isAllowed(icms::$user, 'public_rate', $photo['cat']['cat_id']));
+$xoopsTpl->assign('canSendEcard', $permHandler->isAllowed(icms::$user, 'public_ecard', $photo['cat']['cat_id']));
+$xoopsTpl->assign('canDownload', $permHandler->isAllowed(icms::$user, 'public_download', $photo['cat']['cat_id']));
 
-$xoopsTpl->assign('extgalleryName', $xoopsModule->getVar('name'));
+$xoopsTpl->assign('extgalleryName', icms::$module->getVar('name'));
 
-include XOOPS_ROOT_PATH.'/include/comment_view.php';
-include XOOPS_ROOT_PATH.'/footer.php';
+include ICMS_ROOT_PATH.'/include/comment_view.php';
+include ICMS_ROOT_PATH.'/footer.php';
 
 ?>

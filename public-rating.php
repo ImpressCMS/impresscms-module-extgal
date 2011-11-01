@@ -26,7 +26,7 @@
 //  ------------------------------------------------------------------------ //
 
 require '../../mainfile.php';
-include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
 
 if(!isset($_GET['id'])) {
 	$photoId = 0;
@@ -39,16 +39,16 @@ if(!isset($_GET['rate'])) {
 	$rate = intval($_GET['rate']);
 }
 
-$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 $photo = $photoHandler->get($photoId);
 
 $permHandler = ExtgalleryPublicPermHandler::getHandler();
-if($icmsModuleConfig['enable_rating'] && !$permHandler->isAllowed($xoopsUser, 'public_rate', $photo->getVar('cat_id'))) {
+if(icms::$module->config['enable_rating'] && !$permHandler->isAllowed(icms::$user, 'public_rate', $photo->getVar('cat_id'))) {
 	redirect_header("index.php", 3, _MD_EXTGALLERY_NOPERM);
 	exit;
 }
 
-$ratingHandler = xoops_getmodulehandler('publicrating', 'extgallery');
+$ratingHandler = icms_getModuleHandler('publicrating', 'extgallery');
 
 if($ratingHandler->rate($photoId, $rate)) {
 	$rating = $ratingHandler->getRate($photoId);
