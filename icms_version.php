@@ -1,16 +1,20 @@
 <?php
 
-$modversion['name'] = _MI_EXTGAL_NAME;
-$modversion['version'] = 1.0;
-$modversion['description'] = _MI_EXTGAL_DESC;
-$modversion['credits'] = "http://www.zoullou.net/  http://www.mrtheme.com";
-$modversion['author'] = "Zoullou // (ported to ICMS by Mr. Theme)";
-$modversion['help'] = "";
-$modversion['license'] = "GPL see LICENSE";
-$modversion['official'] = 0;
-$modversion['dirname'] = basename( dirname( __FILE__ ) );
-$modversion['onInstall'] = 'include/install_function.php';
-$modversion['onUpdate'] = 'include/update_function.php';
+$modversion['name'] 			= _MI_EXTGAL_NAME;
+$modversion['version'] 			= '1.0';
+$modversion['status'] 			= '';
+$modversion['status_version'] 	= '';
+$modversion['date'] 			= 'xx xxxxx 2011';
+$modversion['description'] 		= _MI_EXTGAL_DESC;
+$modversion['credits'] 			= "http://www.zoullou.net/  http://www.mrtheme.com";
+$modversion['author'] 			= "Zoullou // (ported to ICMS by Mr. Theme)";
+$modversion['help'] 			= "";
+$modversion['license'] 			= "GPL see LICENSE";
+$modversion['official'] 		= 0;
+$modversion['dirname'] 			= basename( dirname( __FILE__ ) );
+
+$modversion['onInstall'] 		= 'include/install_function.php';
+$modversion['onUpdate'] 		= 'include/update_function.php';
 
 // Admin things
 $modversion['hasAdmin'] = 1;
