@@ -2,7 +2,6 @@
 
 include '../../../include/cp_header.php';
 include '../class/grouppermform.php';
-include 'function.php';
 
 if(isset($_POST['step'])) {
 	$step = $_POST['step'];
@@ -22,7 +21,7 @@ switch($step) {
 
 	case 'enreg':
 
-		$gpermHandler = icms::handler('groupperm');
+		$gpermHandler = icms::handler('icms_member_groupperm');
 
 		if($_POST['type'] == "public") {
 

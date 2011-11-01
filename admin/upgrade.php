@@ -7,7 +7,6 @@ if(isset($_POST['step'])) {
 }
 
 include '../../../include/cp_header.php';
-include 'function.php';
 include 'moduleUpdateFunction.php';
 
 // Change this variable if you use a cloned version of eXtGallery
@@ -24,22 +23,22 @@ switch($step) {
 
 	case 'download':
 
-		xoops_cp_header();
-		extgalleryAdminMenu();
+		icms_cp_header();
+		icms::$module -> displayAdminMenu();
 
 		if(isModuleUpToDate()) {
 
 			echo _AM_EXTGALLERY_UPDATE_OK;
-			xoops_cp_footer();
+			icms_cp_footer();
 			break;
 		}
 
 		if(!$handle = @fopen($downloadServer.$moduleFileName, 'r')) {
 			printf(_AM_EXTGALLERY_MD_FILE_DONT_EXIST, $downloadServer, $moduleFileName);
-			xoops_cp_footer();
+			icms_cp_footer();
 			break;
 		}
-		$localHandle = @fopen(XOOPS_ROOT_PATH.'/uploads/'.$moduleFileName, 'w+');
+		$localHandle = @fopen(ICMS_ROOT_PATH.'/uploads/'.$moduleFileName, 'w+');
 
 		// Downlad module archive
 		if ($handle) {
@@ -52,11 +51,11 @@ switch($step) {
 		}
 
 		// English file are included on module package
-		if($xoopsConfig['language'] != "english") {
+		if($icmsConfig['language'] != "english") {
 			if(!$handle = @fopen($downloadServer.$langFileName, 'r')) {
 				printf(_AM_EXTGALLERY_LG_FILE_DONT_EXIST, $downloadServer, $langFileName);
 			} else {
-				$localHandle = @fopen(XOOPS_ROOT_PATH.'/uploads/'.$langFileName, 'w+');
+				$localHandle = @fopen(ICMS_ROOT_PATH.'/uploads/'.$langFileName, 'w+');
 				// Download language archive
 				if ($handle) {
 				    while (!feof($handle)) {
@@ -69,53 +68,53 @@ switch($step) {
 			}
 		}
 
-		xoops_confirm(array('step' => 'install'), 'upgrade.php', _AM_EXTGALLERY_DOWN_DONE, _AM_EXTGALLERY_INSTALL);
+		icms_core_Message::confirm(array('step' => 'install'), 'upgrade.php', _AM_EXTGALLERY_DOWN_DONE, _AM_EXTGALLERY_INSTALL);
 
-		xoops_cp_footer();
+		icms_cp_footer();
 
 		break;
 
 	case 'install':
 
-		xoops_cp_header();
-		extgalleryAdminMenu();
+		icms_cp_header();
+		icms::$module -> displayAdminMenu();
 
-		if(!file_exists(XOOPS_ROOT_PATH."/uploads/".$moduleFileName)) {
+		if(!file_exists(ICMS_ROOT_PATH."/uploads/".$moduleFileName)) {
 
 			echo _AM_EXTGALLERY_MD_FILE_DONT_EXIST_SHORT;
-			xoops_cp_footer();
+			icms_cp_footer();
 
 			break;
 		}
 
-		$g_pcltar_lib_dir = XOOPS_ROOT_PATH.'/modules/'.$localModuleDir.'/class';
+		$g_pcltar_lib_dir = ICMS_ROOT_PATH.'/modules/'.$localModuleDir.'/class';
 		include "../class/pcltar.lib.php";
 
 		//TrOn(5);
 
 		// Extract module files
-		PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$moduleFileName,XOOPS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
+		PclTarExtract(ICMS_ROOT_PATH."/uploads/".$moduleFileName,ICMS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
 		// Delete downloaded module's files
-		unlink(XOOPS_ROOT_PATH."/uploads/".$moduleFileName);
+		unlink(ICMS_ROOT_PATH."/uploads/".$moduleFileName);
 
-		if(file_exists(XOOPS_ROOT_PATH."/uploads/".$langFileName)) {
+		if(file_exists(ICMS_ROOT_PATH."/uploads/".$langFileName)) {
 			// Extract language files
-			PclTarExtract(XOOPS_ROOT_PATH."/uploads/".$langFileName,XOOPS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
+			PclTarExtract(ICMS_ROOT_PATH."/uploads/".$langFileName,ICMS_ROOT_PATH."/modules/".$localModuleDir."/","modules/".$moduleName."/");
 			// Delete downloaded module's files
-			unlink(XOOPS_ROOT_PATH."/uploads/".$langFileName);
+			unlink(ICMS_ROOT_PATH."/uploads/".$langFileName);
 		}
   
   // Delete folder created by a small issu in PclTar lib
-  if(is_dir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules")) {
-   rmdir(XOOPS_ROOT_PATH."/modules/".$localModuleDir."/modules");
+  if(is_dir(ICMS_ROOT_PATH."/modules/".$localModuleDir."/modules")) {
+   rmdir(ICMS_ROOT_PATH."/modules/".$localModuleDir."/modules");
   }
 
 		// Delete template_c file
-		if ($handle = opendir(XOOPS_ROOT_PATH.'/templates_c')) {
+		if ($handle = opendir(ICMS_ROOT_PATH.'/templates_c')) {
 
    while (false !== ($file = readdir($handle))) {
     if($file != '.' && $file != '..' && $file != 'index.html') {
-     unlink(XOOPS_ROOT_PATH.'/templates_c/'.$file);
+     unlink(ICMS_ROOT_PATH.'/templates_c/'.$file);
     }
    }
 
@@ -123,9 +122,9 @@ switch($step) {
 		}
 		//TrDisplay();
 
-		xoops_confirm(array('dirname' => $localModuleDir, 'op' => 'update_ok', 'fct' => 'modulesadmin'), XOOPS_URL.'/modules/system/admin.php', _AM_EXTGALLERY_INSTALL_DONE, _AM_EXTGALLERY_UPDATE);
+		icms_core_Message::confirm(array('dirname' => $localModuleDir, 'op' => 'update_ok', 'fct' => 'modulesadmin'), XOOPS_URL.'/modules/system/admin.php', _AM_EXTGALLERY_INSTALL_DONE, _AM_EXTGALLERY_UPDATE);
 
-		xoops_cp_footer();
+		icms_cp_footer();
 
 		break;
 

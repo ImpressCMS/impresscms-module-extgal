@@ -1,14 +1,13 @@
 <?php
 
 include '../../../include/cp_header.php';
-include 'function.php';
 include 'moduleUpdateFunction.php';
 
 $catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 $photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 icms_cp_header();
-extgalleryAdminMenu(1);
+icms::$module -> displayAdminMenu( 1, icms::$module -> getVar( 'name' ) );
 
 $code = 'function gd_info() {
        $array = Array(

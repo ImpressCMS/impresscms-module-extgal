@@ -21,7 +21,7 @@ switch($step) {
 	case 'download':
 
 		icms_cp_header();
-		extgalleryAdminMenu();
+		icms::$module -> displayAdminMenu();
 
 		if(!$handle = @fopen($downloadServer.$extentionFileName, 'r')) {
 			printf(_AM_EXTGALLERY_EXT_FILE_DONT_EXIST, $downloadServer, $extentionFileName);
@@ -40,7 +40,7 @@ switch($step) {
 		    fclose($handle);
 		}
 
-		xoops_confirm(array('step' => 'install'), 'install-extention.php', _AM_EXTGALLERY_DOWN_DONE, _AM_EXTGALLERY_INSTALL);
+		icms_core_Message::confirm(array('step' => 'install'), 'install-extention.php', _AM_EXTGALLERY_DOWN_DONE, _AM_EXTGALLERY_INSTALL);
 
 		icms_cp_footer();
 
@@ -51,7 +51,7 @@ switch($step) {
 		if(!file_exists(ICMS_ROOT_PATH."/uploads/".$extentionFileName)) {
 
    icms_cp_header();
-   extgalleryAdminMenu();
+   icms::$module -> displayAdminMenu( );
 			echo _AM_EXTGALLERY_EXT_FILE_DONT_EXIST_SHORT;
 			icms_cp_footer();
 

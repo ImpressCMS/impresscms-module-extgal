@@ -2,7 +2,6 @@
 
 include '../../../include/cp_header.php';
 include ICMS_ROOT_PATH.'/modules/extgallery/class/pear/Image/Transform.php';
-include 'function.php';
 
 if(isset($_GET['op'])) {
 	$op = $_GET['op'];
@@ -96,7 +95,7 @@ switch($op) {
 		if($maxTimeReached) {
 
 			icms_cp_header();
-			extgalleryAdminMenu(4);
+			icms::$module -> displayAdminMenu( 4, icms::$module -> getVar( 'name' ) );
 
 			echo '<div class="confirmMsg">';
 
@@ -182,7 +181,7 @@ switch($op) {
 				$categories[$photo->getVar('cat_id')]++;
 			}
 
-			$notification_handler = icms::handler('notification');
+			$notification_handler = icms::handler('icms_data_notification');
 
 			foreach($categories as $k=>$v) {
 				$cat = $catHandler->getCat($k);
@@ -388,7 +387,7 @@ switch($op) {
 			default:
 
 				icms_cp_header();
-				extgalleryAdminMenu(4);
+				icms::$module -> displayAdminMenu( 4, icms::$module -> getVar( 'name' ) );
 
 				$catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 				$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
@@ -433,7 +432,7 @@ switch($op) {
 					}*/
 					echo '<tr class="'.$class.'">'."\n";
 					echo '<td><input type="checkbox" name="photoId['.$photo->getVar('photo_id').'][]" id="photoId['.$photo->getVar('photo_id').'][]" /></td>'."\n";
-					echo '<td><img src="'.XOOPS_URL.'/uploads/extgallery/public-photo/thumb/thumb_'.$photo->getVar('photo_name').'" /></td>'."\n";
+					echo '<td><img src="'.ICMS_URL.'/uploads/extgallery/public-photo/thumb/thumb_'.$photo->getVar('photo_name').'" /></td>'."\n";
 					echo '<td>'.$catHandler->getLeafSelect('catId['.$photo->getVar('photo_id').']', false, $_GET['cat_id']).'</td>'."\n";
 					echo '<td><input type="text" name="photoPoids['.$photo->getVar('photo_id').']" id="photoPoids['.$photo->getVar('photo_id').']" value="'.$photo->getVar('photo_weight').'" size="3" maxlength="14" /></td>'."\n";
 					echo '<td><input type="text" name="photoTitre['.$photo->getVar('photo_id').']" id="photoTitre['.$photo->getVar('photo_id').']" value="'.$photo->getVar('photo_title','e').'" size="60" maxlength="150" /><br>'."\n";
@@ -520,8 +519,8 @@ switch($op) {
 		$catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 		$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
-		xoops_cp_header();
-		extgalleryAdminMenu(4);
+		icms_cp_header();
+		icms::$module -> displayAdminMenu( 4, icms::$module -> getVar( 'name' ) );
 
 		$nbPhotos = 0;
 
@@ -542,11 +541,11 @@ switch($op) {
 		echo '<b>'._AM_EXTGALLERY_BATCH_PATH.'</b> : '.ICMS_ROOT_PATH.'/modules/extgallery/batch/<br /><br />'.sprintf(_AM_EXTGALLERY_ADD_BATCH_INFO, $nbPhotos);
 		echo '</fieldset><br />';
 
-		$form = new XoopsThemeForm(_AM_EXTGALLERY_ADD_BATCH, 'batch_photo', 'photo.php?op=batchAdd', 'post', true);
-		$form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_ALBUM, $catHandler->getLeafSelect('cat_id')));
-		$form->addElement(new XoopsFormText(_AM_EXTGALLERY_DESC, 'photo_desc', '70', '255'),false);
-		$form->addElement(new XoopsFormHidden("step", 'enreg'));
-		$form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
+		$form = new icms_form_Theme(_AM_EXTGALLERY_ADD_BATCH, 'batch_photo', 'photo.php?op=batchAdd', 'post', true);
+		$form->addElement(new icms_form_elements_Label(_AM_EXTGALLERY_ALBUM, $catHandler->getLeafSelect('cat_id')));
+		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_DESC, 'photo_desc', '70', '255'),false);
+		$form->addElement(new icms_form_elements_Hidden("step", 'enreg'));
+		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
 		$form->display();
 
 		echo '</fieldset><br />';
@@ -558,10 +557,10 @@ switch($op) {
 		echo _AM_EXTGALLERY_REBUILD_THUMB_INFO;
 		echo '</fieldset><br />';
 
-		$form = new XoopsThemeForm(_AM_EXTGALLERY_REBUILD_THUMB, 'rebuild_thumb', 'photo.php', 'get', true);
-		$form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_ALBUM, $catHandler->getSelect('cat_id', 'node')));
-		$form->addElement(new XoopsFormHidden("op", 'rebuildthumb'));
-		$form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
+		$form = new icms_form_Theme(_AM_EXTGALLERY_REBUILD_THUMB, 'rebuild_thumb', 'photo.php', 'get', true);
+		$form->addElement(new icms_form_elements_Label(_AM_EXTGALLERY_ALBUM, $catHandler->getSelect('cat_id', 'node')));
+		$form->addElement(new icms_form_elements_Hidden("op", 'rebuildthumb'));
+		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
 		$form->display();
 
 		echo '</fieldset><br />';
@@ -573,10 +572,10 @@ switch($op) {
 		echo _AM_EXTGALLERY_EDITDELETE_PHOTO_INFO;
 		echo '</fieldset><br />';
 
-		$form = new XoopsThemeForm(_AM_EXTGALLERY_EDITDELETE_PHOTO, 'modify_photo', 'photo.php', 'get', true);
-		$form->addElement(new XoopsFormLabel(_AM_EXTGALLERY_ALBUM, $catHandler->getSelect('cat_id', 'node')));
-		$form->addElement(new XoopsFormHidden("op", 'modify'));
-		$form->addElement(new XoopsFormButton("", "submit", _SUBMIT, "submit"));
+		$form = new icms_form_Theme(_AM_EXTGALLERY_EDITDELETE_PHOTO, 'modify_photo', 'photo.php', 'get', true);
+		$form->addElement(new icms_form_elements_Label(_AM_EXTGALLERY_ALBUM, $catHandler->getSelect('cat_id', 'node')));
+		$form->addElement(new icms_form_elements_Hidden("op", 'modify'));
+		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
 		$form->display();
 
 		echo '</fieldset><br />';
@@ -590,7 +589,7 @@ switch($op) {
 		echo '</fieldset><br />';
 
 		$pendingPhoto = $photoHandler->getPendingPhoto();
-		$pageNav = new XoopsPageNav(count($pendingPhoto), $icmsModuleConfig['admin_nb_photo'], $start);
+		$pageNav = new icms_view_PageNav(count($pendingPhoto), icms::$module->config['admin_nb_photo'], $start);
 
 		echo '<div style="text-align:right;">'.$pageNav->renderNav().'</div>';
 		echo '<form action="photo.php?op=batchApprove" method="post">';
@@ -607,7 +606,7 @@ switch($op) {
 		$first = true;
 		foreach($pendingPhoto as $photo) {
 
-			if(++$i < $start+1 || $i > ($start + $icmsModuleConfig['admin_nb_photo'])) {
+			if(++$i < $start+1 || $i > ($start + icms::$module->config['admin_nb_photo'])) {
 				continue;
 			}
 			$class = (($i%2) == 0) ? 'even' : 'odd';
@@ -616,7 +615,7 @@ switch($op) {
 			}
 			echo '<tr class="'.$class.'">'."\n";
 			echo '<td><input type="checkbox" name="photoId['.$photo->getVar('photo_id').']" id="photoId['.$photo->getVar('photo_id').']" /></td>'."\n";
-			echo '<td><img src="'.XOOPS_URL.'/uploads/extgallery/public-photo/thumb/thumb_'.$photo->getVar('photo_name').'" /></td>'."\n";
+			echo '<td><img src="'.ICMS_URL.'/uploads/extgallery/public-photo/thumb/thumb_'.$photo->getVar('photo_name').'" /></td>'."\n";
 			echo '<td>'.$cat[$photo->getVar('cat_id')]->getVar('cat_name').'</td>'."\n";
 			echo '<td>'.$photo->getVar('photo_desc').'</td>'."\n";
 			echo '<td>'."\n";
@@ -643,11 +642,9 @@ switch($op) {
 		echo '}'."\n";
 		echo '</script>'."\n";
 
-		xoops_cp_footer();
+		icms_cp_footer();
 
 		break;
 
 }
-
-
 ?>

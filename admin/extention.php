@@ -1,7 +1,6 @@
 <?php
 
 include '../../../include/cp_header.php';
-include 'function.php';
 
 icms_cp_header();
 icms::$module -> displayAdminMenu( 8, icms::$module -> getVar( 'name' ) );

@@ -1,7 +1,6 @@
 <?php
 
 include '../../../include/cp_header.php';
-include 'function.php';
 
 if(isset($_POST['op'])) {
 	$op = $_POST['op'];

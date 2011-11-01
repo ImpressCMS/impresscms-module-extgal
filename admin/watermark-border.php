@@ -26,7 +26,6 @@
 //  ------------------------------------------------------------------------ //
 
 include '../../../include/cp_header.php';
-include 'function.php';
 
 if(isset($_GET['op'])) {
 	$op = $_GET['op'];
