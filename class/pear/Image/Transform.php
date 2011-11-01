@@ -29,7 +29,7 @@
 /**
  * Include for error handling
  */
-require_once XOOPS_ROOT_PATH.'/modules/extgallery/class/pear/PEAR.php';
+require_once ICMS_ROOT_PATH.'/modules/extgallery/class/pear/PEAR.php';
 
 /**
  * Error code for unsupported library, image format or methods
@@ -215,7 +215,7 @@ class Image_Transform
                     IMAGE_TRANSFORM_ERROR_ARGUMENT);
             }
 		}
-        @include_once XOOPS_ROOT_PATH.'/modules/extgallery/class/pear/Image/Transform/Driver/' . basename($driver) . '.php';
+        @include_once ICMS_ROOT_PATH.'/modules/extgallery/class/pear/Image/Transform/Driver/' . basename($driver) . '.php';
 
         $classname = "Image_Transform_Driver_{$driver}";
         if (!class_exists($classname)) {
@@ -1083,7 +1083,7 @@ class Image_Transform
                 return $this->colorhex2colorarray($color);
             }
             static $colornames = array();
-            include_once(XOOPS_ROOT_PATH.'/modules/extgallery/class/pear/Image/Transform/Driver/ColorsDefs.php');
+            include_once(ICMS_ROOT_PATH.'/modules/extgallery/class/pear/Image/Transform/Driver/ColorsDefs.php');
             return (isset($colornames[$color])) ? $colornames[$color] : $default;
         }
         return $default;

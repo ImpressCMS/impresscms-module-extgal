@@ -58,7 +58,7 @@ class ExtgalleryPersistableObjectHandler extends icms_core_ObjectHandler {
     * @return void
     */
     function ExtgalleryPersistableObjectHandler(&$db, $tablename, $classname, $keyname, $idenfierName = false) {
-		parent::__construct($db);
+        parent::__construct($db);
         $this->table = $db->prefix($tablename);
         $this->keyName = $keyname;
         $this->className = $classname;

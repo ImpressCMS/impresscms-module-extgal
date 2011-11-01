@@ -43,7 +43,7 @@ class ExtgalleryPubliccatHandler extends ExtgalleryCatHandler {
 		$moduleId = icms::$module->getVar('mid');
 
 		// Retriving permission mask
-		$gpermHandler =& icms::handler('icms_member_groupperm');
+		$gpermHandler = icms::handler('icms_member_groupperm');
 		$moduleId = icms::$module->getVar('mid');
 		$groups = icms::$user->getGroups();
 
@@ -54,7 +54,7 @@ class ExtgalleryPubliccatHandler extends ExtgalleryCatHandler {
 
 
 		// Retriving group list
-		$memberHandler =& icms::handler('icms_member');
+		$memberHandler = icms::handler('icms_member');
 		$glist = $memberHandler->getGroupList();
 
 		// Applying permission mask
