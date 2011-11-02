@@ -1,10 +1,10 @@
 <?php 
 
 if (!defined('ICMS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
+	die("ICMS root path not defined");
 }
 
-require ICMS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
+// require ICMS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
 
 class ExtgalleryGroupPermForm extends icms_form_Groupperm {
 
@@ -18,11 +18,13 @@ class ExtgalleryGroupPermForm extends icms_form_Groupperm {
    $this->_itemTree[$item_id]['allchild'] = array();
    $this->_loadAllChildItemIds($item_id, $this->_itemTree[$item_id]['allchild']);
   }
+  
   $gperm_handler = icms::handler('icms_member_groupperm');
-  $member_handler = icms::handler('icms_member');
-  $glist = $member_handler->getGroupList();
+		$member_handler = icms::handler('icms_member');
+		$glist = & $member_handler->getGroupList();
+  
   foreach (array_keys($glist) as $i) {
-   if ($i == XOOPS_GROUP_ANONYMOUS && !$this->_showAnonymous) continue;
+   if ($i == ICMS_GROUP_ANONYMOUS && !$this->_showAnonymous) continue;
    // get selected item id(s) for each group
    $selected = $gperm_handler->getItemIds($this->_permName, $i, $this->_modid);
    $ele = new ExtgalleryGroupFormCheckBox($glist[$i], 'perms[' . $this->_permName . ']', $i, $selected);
@@ -67,10 +69,10 @@ class ExtgalleryGroupPermForm extends icms_form_Groupperm {
 
 }
 
-class ExtgalleryGroupFormCheckBox extends XoopsGroupFormCheckBox {
+class ExtgalleryGroupFormCheckBox extends icms_form_elements_Groupperm {
 
  function ExtgalleryGroupFormCheckBox($caption, $name, $groupId, $values = null) {
-  $this->XoopsGroupFormCheckBox($caption, $name, $groupId, $values);
+  $this->icms_form_elements_Groupperm($caption, $name, $groupId, $values);
  }
 
  function render() {

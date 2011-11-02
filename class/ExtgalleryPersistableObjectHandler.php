@@ -275,7 +275,7 @@ class ExtgalleryPersistableObjectHandler extends icms_core_ObjectHandler {
      * @param bool $force
      * @return bool FALSE if failed.
      */
-    function delete($id, $force = false)
+    function delete(&$id, $force = false)
     {
         if (is_array($this->keyName)) {
             $clause = array();

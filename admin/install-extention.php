@@ -7,7 +7,6 @@ if(isset($_POST['step'])) {
 }
 
 include '../../../include/cp_header.php';
-include 'function.php';
 
 // Change this variable if you use a cloned version of eXtGallery
 $localModuleDir = 'extgallery';
@@ -50,8 +49,8 @@ switch($step) {
 
 		if(!file_exists(ICMS_ROOT_PATH."/uploads/".$extentionFileName)) {
 
-   icms_cp_header();
-   icms::$module -> displayAdminMenu( );
+			icms_cp_header();
+			icms::$module -> displayAdminMenu( );
 			echo _AM_EXTGALLERY_EXT_FILE_DONT_EXIST_SHORT;
 			icms_cp_footer();
 

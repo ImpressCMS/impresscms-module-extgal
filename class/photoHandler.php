@@ -431,8 +431,6 @@ class ExtgalleryPhotoHandler extends ExtgalleryPersistableObjectHandler {
 
 	function _getImageDimension($photoName) {
 
-		global icms::$module->config;
-
 		// Define Graphical library path
 		if(!defined('IMAGE_TRANSFORM_IM_PATH') && icms::$module->config['graphic_lib'] == 'IM') {
 			define('IMAGE_TRANSFORM_IM_PATH', icms::$module->config['graphic_lib_path']);

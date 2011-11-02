@@ -4,8 +4,8 @@ if (!defined("ICMS_ROOT_PATH")) {
 	die("ICMS root path not defined");
 }
 
-include_once 'publicPerm.php';
-include_once 'ExtgalleryPersistableObjectHandler.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/publicPerm.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/ExtgalleryPersistableObjectHandler.php';
 
 class ExtgalleryCat extends icms_core_Object
 {

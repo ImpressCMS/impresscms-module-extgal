@@ -128,11 +128,11 @@ switch($op) {
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255', $cat->getVar('cat_name','e')),false);
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4', $cat->getVar('cat_weight')),false);
 				$form->addElement(new icms_form_elements_DhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', $cat->getVar('cat_desc','e')), false);
-				$elementTrayThumb = new icms_form_elements_ElementTray(_AM_EXTGALLERY_THUMB);
+				$elementTrayThumb = new icms_form_elements_Tray(_AM_EXTGALLERY_THUMB);
 				$elementTrayThumb->addElement(new icms_form_elements_Label("", $photoSelect."<img style=\"float:left; margin-top:5px;\" id=\"thumb\" src=\"$selectedPhoto\" />"));
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150', $cat->getVar('cat_imgurl','e')),false);
 				$form->addElement($elementTrayThumb);
-				$elementTrayButton = new icms_form_elements_ElementTray("");
+				$elementTrayButton = new icms_form_elements_Tray("");
 				$elementTrayButton->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
 				$elementTrayButton->addElement(new icms_form_elements_Button("", "delete", _DELETE, "submit"));
 				$form->addElement($elementTrayButton);

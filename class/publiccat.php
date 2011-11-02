@@ -4,7 +4,7 @@ if (!defined("ICMS_ROOT_PATH")) {
 	die("ICMS root path not defined");
 }
 
-include_once 'catHandler.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/catHandler.php';
 
 class ExtgalleryPubliccat extends ExtgalleryCat {
 
@@ -43,9 +43,8 @@ class ExtgalleryPubliccatHandler extends ExtgalleryCatHandler {
 		$moduleId = icms::$module->getVar('mid');
 
 		// Retriving permission mask
-		$gpermHandler = icms::handler('icms_member_groupperm');
+		$gpermHandler =& icms::handler('icms_member_groupperm');
 		$moduleId = icms::$module->getVar('mid');
-		$groups = icms::$user->getGroups();
 
 		$criteria = new icms_db_criteria_Compo();
 		$criteria->add(new icms_db_criteria_Item('gperm_name','extgallery_public_mask'));
@@ -54,7 +53,7 @@ class ExtgalleryPubliccatHandler extends ExtgalleryCatHandler {
 
 
 		// Retriving group list
-		$memberHandler = icms::handler('icms_member');
+		$memberHandler =& icms::handler('icms_member');
 		$glist = $memberHandler->getGroupList();
 
 		// Applying permission mask

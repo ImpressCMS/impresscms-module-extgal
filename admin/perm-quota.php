@@ -1,7 +1,6 @@
 <?php
 
 include '../../../include/cp_header.php';
-include '../class/grouppermform.php';
 
 if(isset($_POST['step'])) {
 	$step = $_POST['step'];
@@ -45,7 +44,9 @@ switch($step) {
 
 	case 'default':
 	default:
-
+	
+		include_once '../class/grouppermform.php';
+		
 	    $permArray = include ICMS_ROOT_PATH.'/modules/extgallery/include/perm.php';
 	    $modulePermArray = $permArray['modulePerm'];
 	    $pluginPermArray = $permArray['pluginPerm'];

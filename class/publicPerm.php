@@ -1,7 +1,7 @@
 <?php
 
 if (!defined("ICMS_ROOT_PATH")) {
-	die("XOOPS root path not defined");
+	die("ICMS root path not defined");
 }
 
 class ExtgalleryPublicPermHandler {
@@ -19,7 +19,7 @@ class ExtgalleryPublicPermHandler {
 		if(is_a($user,'icms_member_user_Object')) {
 			return $user->getGroups();
 		} else {
-			return XOOPS_GROUP_ANONYMOUS;
+			return ICMS_GROUP_ANONYMOUS;
 		}
 	}
 
