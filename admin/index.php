@@ -155,24 +155,24 @@ if(!function_exists("gd_info")) eval($code);
 
 $gd = gd_info();
 
-echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_UPDATE_INFO.'</legend>';
-if(!moduleLastVersionInfo()) {
-	echo "<span style=\"color:black; font-weight:bold;\">"._AM_EXTGALLERY_CHECK_UPDATE_ERROR."</span>";
-} else if(!isModuleUpToDate()) {
- if(isXoopsVersionSupportLastModuleVersion()) {
-  echo "<h3 style=\"color:red;\">"._AM_EXTGALLERY_UPDATE_KO."</h3><br /><form action=\"upgrade.php\" method=\"post\"><input type=\"hidden\" name=\"step\" value=\"download\" /><input class=\"formButton\" value=\""._AM_EXTGALLERY_UPDATE_UPGRADE."\" type=\"submit\" /></form>";
-  echo '<br /><fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_CHANGELOG.'</legend>';
-  echo getChangelog();
-  echo '</fieldset>';
- } else {
-  echo sprintf(_AM_EXTGALLERY_XOOPS_VERSION_NOT_SUPPORTED, "2.3.8")."<br />";
- }
-} else {
-	echo "<span style=\"color:green;\">"._AM_EXTGALLERY_UPDATE_OK."</span>";
-}
+//echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_UPDATE_INFO.'</legend>';
+//if(!moduleLastVersionInfo()) {
+//	echo "<span style=\"color:black; font-weight:bold;\">"._AM_EXTGALLERY_CHECK_UPDATE_ERROR."</span>";
+//} else if(!isModuleUpToDate()) {
+// if(isXoopsVersionSupportLastModuleVersion()) {
+//  echo "<h3 style=\"color:red;\">"._AM_EXTGALLERY_UPDATE_KO."</h3><br /><form action=\"upgrade.php\" method=\"post\"><input type=\"hidden\" name=\"step\" value=\"download\" /><input class=\"formButton\" value=\""._AM_EXTGALLERY_UPDATE_UPGRADE."\" type=\"submit\" /></form>";
+//  echo '<br /><fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_CHANGELOG.'</legend>';
+//  echo getChangelog();
+//  echo '</fieldset>';
+// } else {
+//  echo sprintf(_AM_EXTGALLERY_XOOPS_VERSION_NOT_SUPPORTED, "2.3.8")."<br />";
+// }
+//} else {
+//	echo "<span style=\"color:green;\">"._AM_EXTGALLERY_UPDATE_OK."</span>";
+//}
 
-echo '</fieldset>';
-echo '<br />';
+//echo '</fieldset>';
+//echo '<br />';
 
 echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_SERVER_CONF.'</legend>';
 
