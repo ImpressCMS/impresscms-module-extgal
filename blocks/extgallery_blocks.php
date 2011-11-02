@@ -2,7 +2,7 @@
 
 function extgalleryRandomShow($options) {
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	$param = array('limit'=>$options[0]);
 	$direction = $options[1];
@@ -38,7 +38,7 @@ function extgalleryRandomShow($options) {
 
 function extgalleryLastShow($options) {
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	$param = array('limit'=>$options[0]);
 	$direction = $options[1];
@@ -74,7 +74,7 @@ function extgalleryLastShow($options) {
 
 function extgalleryTopViewShow($options) {
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	$param = array('limit'=>$options[0]);
 	$direction = $options[1];
@@ -110,7 +110,7 @@ function extgalleryTopViewShow($options) {
 
 function extgalleryTopRatedShow($options) {
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	$param = array('limit'=>$options[0]);
 	$direction = $options[1];
@@ -146,7 +146,7 @@ function extgalleryTopRatedShow($options) {
 
 function extgalleryTopEcardShow($options) {
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
 	$param = array('limit'=>$options[0]);
 	$direction = $options[1];
@@ -182,12 +182,11 @@ function extgalleryTopEcardShow($options) {
 
 function extgalleryTopSubmitterShow($options) {
 
-    global $xoopsDB, $xoopsConfig;
     if ($options[1] != 0) {
         $cat = array_slice($options, 1); //Get information about categories to display
         $catauth = implodeArray2Dextgallery(',', $cat); //Creation of categories list to use - separated by a coma
     }
-    $sql = 'SELECT uid, count(photo_id) as countphoto FROM '.$xoopsDB->prefix('extgallery_publicphoto');
+    $sql = 'SELECT uid, count(photo_id) as countphoto FROM '.icms::$xoopsDB->prefix('extgallery_publicphoto');
     $sql .= ' WHERE (uid>0)';
     if ($options[1] != 0) {
         $sql .= ' AND cat_id IN ('.$catauth.')';
@@ -196,14 +195,14 @@ function extgalleryTopSubmitterShow($options) {
     if (intval($options[0]) > 0) {
         $sql .= ' LIMIT '.intval($options[0]);
     }
-    $result = $xoopsDB->query($sql);
+    $result = icms::$xoopsDB->query($sql);
     if (!$result) {
         return '';
     }
-    while ($myrow = $xoopsDB->fetchArray($result)) {
+    while ($myrow = icms::$xoopsDB->fetchArray($result)) {
         $uid = $myrow['uid'];
         $countphoto = $myrow['countphoto'];
-        $uname = XoopsUser::getUnameFromId($myrow['uid']);
+        $uname = icms_member_user_Handler::getUserLink($myrow['uid']);
         $block['designers'][] = array('uid' => $uid, 'uname' => $uname, 'countphoto' => $countphoto);
     }
     return $block;
@@ -213,7 +212,7 @@ function extgalleryTopSubmitterShow($options) {
 function extgalleryRandomSlideshowShow($options) {
 	global $xoTheme;
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
  $delay = $options[0];
  $duration = $options[1];
@@ -264,35 +263,34 @@ function extgalleryRandomSlideshowShow($options) {
  }
 
  // Retrive module configuration
- $dirname = (isset($xoopsModule) ? $xoopsModule->getVar('dirname') :'system');
+ $dirname = (isset(icms::$module) ? icms::$module->getVar('dirname') :'system');
  if($dirname == 'extgallery') {
-  $moduleConfig = $GLOBALS['icmsModuleConfig'];
+  $moduleConfig = icms::$config;
  } else {
-  $moduleHandler =& xoops_gethandler('module');
+  $moduleHandler = icms::handler( 'icms_module' );
   $module = $moduleHandler->getByDirname('extgallery');
-  $config_handler =& xoops_gethandler('config');
+  $config_handler = icms::$config;
   $moduleConfig = $config_handler->getConfigList($module->getVar("mid"));
  }
 
 	$ret = 	array(
-				'slideshows'=>$slideshows,
-				'direction'=>$direction,
-				'desc'=>$desc,
-    'delay'=>$delay,
-    'duration'=>$duration,
-    'transtype'=>$transtype,
-    'effecttype'=>$effecttype,
-    'effectoption'=>$effectoption,
-    'uniqid'=>substr(md5(uniqid(rand())),27),
-    'display_type'=>$moduleConfig['display_type']
-			);
+					'slideshows'=>$slideshows,
+					'direction'=>$direction,
+					'desc'=>$desc,
+					'delay'=>$delay,
+					'duration'=>$duration,
+					'transtype'=>$transtype,
+					'effecttype'=>$effecttype,
+					'effectoption'=>$effectoption,
+					'uniqid'=>substr(md5(uniqid(rand())),27),
+					'display_type'=>$moduleConfig['display_type'] );
 	return $ret;
 }
 
 function extgalleryLastSlideshowShow($options) {
 	global $xoTheme;
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
  $delay = $options[0];
  $duration = $options[1];
@@ -300,9 +298,9 @@ function extgalleryLastSlideshowShow($options) {
  $effecttype = $options[3];
  $effectoption = $options[4];
  $nbSlideshow = $options[5];
-	$param = array('limit'=>$options[6]);
-	$direction = $options[7];
-	$desc = $options[8];
+ $param = array('limit'=>$options[6]);
+ $direction = $options[7];
+ $desc = $options[8];
 
  // Include for SlideShow
  $xoTheme->addStylesheet('modules/extgallery/include/slideshow/css/slideshow-block.css');
@@ -318,9 +316,9 @@ function extgalleryLastSlideshowShow($options) {
   $xoTheme->addScript('modules/extgallery/include/slideshow/js/slideshow.push.js');
  }
 
-	array_shift($options);
-	array_shift($options);
-	array_shift($options);
+ array_shift($options);
+ array_shift($options);
+ array_shift($options);
  array_shift($options);
  array_shift($options);
  array_shift($options);
@@ -343,35 +341,34 @@ function extgalleryLastSlideshowShow($options) {
  }
 
 	// Retrive module configuration
- $dirname = (isset($xoopsModule) ? $xoopsModule->getVar('dirname') :'system');
+ $dirname = (isset(icms::$module) ? icms::$module->getVar('dirname') :'system');
  if($dirname == 'extgallery') {
-  $moduleConfig = $GLOBALS['icmsModuleConfig'];
+  $moduleConfig = icms::$config;
  } else {
-  $moduleHandler =& xoops_gethandler('module');
+  $moduleHandler = icms::handler( 'icms_module' );
   $module = $moduleHandler->getByDirname('extgallery');
-  $config_handler =& xoops_gethandler('config');
+  $config_handler = icms::$config;
   $moduleConfig = $config_handler->getConfigList($module->getVar("mid"));
  }
 
 	$ret = 	array(
-				'slideshows'=>$slideshows,
-				'direction'=>$direction,
-				'desc'=>$desc,
-    'delay'=>$delay,
-    'duration'=>$duration,
-    'transtype'=>$transtype,
-    'effecttype'=>$effecttype,
-    'effectoption'=>$effectoption,
-    'uniqid'=>substr(md5(uniqid(rand())),27),
-    'display_type'=>$moduleConfig['display_type']
-			);
+					'slideshows'=>$slideshows,
+					'direction'=>$direction,
+					'desc'=>$desc,
+					'delay'=>$delay,
+					'duration'=>$duration,
+					'transtype'=>$transtype,
+					'effecttype'=>$effecttype,
+					'effectoption'=>$effectoption,
+					'uniqid'=>substr(md5(uniqid(rand())),27),
+					'display_type'=>$moduleConfig['display_type'] );
 	return $ret;
 }
 
 function extgalleryTopViewSlideshowShow($options) {
 	global $xoTheme;
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+	$photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
  $delay = $options[0];
  $duration = $options[1];
@@ -379,9 +376,9 @@ function extgalleryTopViewSlideshowShow($options) {
  $effecttype = $options[3];
  $effectoption = $options[4];
  $nbSlideshow = $options[5];
-	$param = array('limit'=>$options[6]);
-	$direction = $options[7];
-	$desc = $options[8];
+ $param = array('limit'=>$options[6]);
+ $direction = $options[7];
+ $desc = $options[8];
 
  // Include for SlideShow
  $xoTheme->addStylesheet('modules/extgallery/include/slideshow/css/slideshow-block.css');
@@ -397,9 +394,9 @@ function extgalleryTopViewSlideshowShow($options) {
   $xoTheme->addScript('modules/extgallery/include/slideshow/js/slideshow.push.js');
  }
 
-	array_shift($options);
-	array_shift($options);
-	array_shift($options);
+ array_shift($options);
+ array_shift($options);
+ array_shift($options);
  array_shift($options);
  array_shift($options);
  array_shift($options);
@@ -422,35 +419,34 @@ function extgalleryTopViewSlideshowShow($options) {
  }
 
 	// Retrive module configuration
- $dirname = (isset($xoopsModule) ? $xoopsModule->getVar('dirname') :'system');
+ $dirname = (isset(icms::$module) ? icms::$module->getVar('dirname') :'system');
  if($dirname == 'extgallery') {
-  $moduleConfig = $GLOBALS['icmsModuleConfig'];
+  $moduleConfig = icms::$config;
  } else {
-  $moduleHandler =& xoops_gethandler('module');
+  $moduleHandler = icms::handler( 'icms_module' );
   $module = $moduleHandler->getByDirname('extgallery');
-  $config_handler =& xoops_gethandler('config');
+  $config_handler = icms::$config;
   $moduleConfig = $config_handler->getConfigList($module->getVar("mid"));
  }
 
 	$ret = 	array(
-				'slideshows'=>$slideshows,
-				'direction'=>$direction,
-				'desc'=>$desc,
-    'delay'=>$delay,
-    'duration'=>$duration,
-    'transtype'=>$transtype,
-    'effecttype'=>$effecttype,
-    'effectoption'=>$effectoption,
-    'uniqid'=>substr(md5(uniqid(rand())),27),
-    'display_type'=>$moduleConfig['display_type']
-			);
+					'slideshows'=>$slideshows,
+					'direction'=>$direction,
+					'desc'=>$desc,
+					'delay'=>$delay,
+					'duration'=>$duration,
+					'transtype'=>$transtype,
+					'effecttype'=>$effecttype,
+					'effectoption'=>$effectoption,
+					'uniqid'=>substr(md5(uniqid(rand())),27),
+					'display_type'=>$moduleConfig['display_type'] );
 	return $ret;
 }
 
 function extgalleryTopRatedSlideshowShow($options) {
-	global $xoTheme;
+ global $xoTheme;
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+ $photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
  $delay = $options[0];
  $duration = $options[1];
@@ -458,9 +454,9 @@ function extgalleryTopRatedSlideshowShow($options) {
  $effecttype = $options[3];
  $effectoption = $options[4];
  $nbSlideshow = $options[5];
-	$param = array('limit'=>$options[6]);
-	$direction = $options[7];
-	$desc = $options[8];
+ $param = array('limit'=>$options[6]);
+ $direction = $options[7];
+ $desc = $options[8];
 
  // Include for SlideShow
  $xoTheme->addStylesheet('modules/extgallery/include/slideshow/css/slideshow-block.css');
@@ -476,9 +472,9 @@ function extgalleryTopRatedSlideshowShow($options) {
   $xoTheme->addScript('modules/extgallery/include/slideshow/js/slideshow.push.js');
  }
 
-	array_shift($options);
-	array_shift($options);
-	array_shift($options);
+ array_shift($options);
+ array_shift($options);
+ array_shift($options);
  array_shift($options);
  array_shift($options);
  array_shift($options);
@@ -501,35 +497,34 @@ function extgalleryTopRatedSlideshowShow($options) {
  }
 
 	// Retrive module configuration
- $dirname = (isset($xoopsModule) ? $xoopsModule->getVar('dirname') :'system');
+ $dirname = (isset(icms::$module) ? icms::$module->getVar('dirname') :'system');
  if($dirname == 'extgallery') {
-  $moduleConfig = $GLOBALS['icmsModuleConfig'];
+  $moduleConfig = icms::$config;
  } else {
-  $moduleHandler =& xoops_gethandler('module');
+  $moduleHandler = icms::handler( 'icms_module' );;
   $module = $moduleHandler->getByDirname('extgallery');
-  $config_handler =& xoops_gethandler('config');
+  $config_handler = icms::$config;
   $moduleConfig = $config_handler->getConfigList($module->getVar("mid"));
  }
 
 	$ret = 	array(
-				'slideshows'=>$slideshows,
-				'direction'=>$direction,
-				'desc'=>$desc,
-    'delay'=>$delay,
-    'duration'=>$duration,
-    'transtype'=>$transtype,
-    'effecttype'=>$effecttype,
-    'effectoption'=>$effectoption,
-    'uniqid'=>substr(md5(uniqid(rand())),27),
-    'display_type'=>$moduleConfig['display_type']
-			);
+					'slideshows'=>$slideshows,
+					'direction'=>$direction,
+					'desc'=>$desc,
+					'delay'=>$delay,
+					'duration'=>$duration,
+					'transtype'=>$transtype,
+					'effecttype'=>$effecttype,
+					'effectoption'=>$effectoption,
+					'uniqid'=>substr(md5(uniqid(rand())),27),
+					'display_type'=>$moduleConfig['display_type']);
 	return $ret;
 }
 
 function extgalleryTopEcardSlideshowShow($options) {
-	global $xoTheme;
+ global $xoTheme;
 
-	$photoHandler = xoops_getmodulehandler('publicphoto', 'extgallery');
+ $photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
 
  $delay = $options[0];
  $duration = $options[1];
@@ -537,9 +532,9 @@ function extgalleryTopEcardSlideshowShow($options) {
  $effecttype = $options[3];
  $effectoption = $options[4];
  $nbSlideshow = $options[5];
-	$param = array('limit'=>$options[6]);
-	$direction = $options[7];
-	$desc = $options[8];
+ $param = array('limit'=>$options[6]);
+ $direction = $options[7];
+ $desc = $options[8];
 
  // Include for SlideShow
  $xoTheme->addStylesheet('modules/extgallery/include/slideshow/css/slideshow-block.css');
@@ -555,9 +550,9 @@ function extgalleryTopEcardSlideshowShow($options) {
   $xoTheme->addScript('modules/extgallery/include/slideshow/js/slideshow.push.js');
  }
 
-	array_shift($options);
-	array_shift($options);
-	array_shift($options);
+ array_shift($options);
+ array_shift($options);
+ array_shift($options);
  array_shift($options);
  array_shift($options);
  array_shift($options);
@@ -580,36 +575,33 @@ function extgalleryTopEcardSlideshowShow($options) {
  }
 
 	// Retrive module configuration
- $dirname = (isset($xoopsModule) ? $xoopsModule->getVar('dirname') :'system');
+ $dirname = (isset(icms::$module) ? icms::$module->getVar('dirname') :'system');
  if($dirname == 'extgallery') {
-  $moduleConfig = $GLOBALS['icmsModuleConfig'];
+  $moduleConfig = icms::$config;
  } else {
-  $moduleHandler =& xoops_gethandler('module');
+  $moduleHandler = icms::handler( 'icms_module' );;
   $module = $moduleHandler->getByDirname('extgallery');
-  $config_handler =& xoops_gethandler('config');
+  $config_handler = icms::$config;
   $moduleConfig = $config_handler->getConfigList($module->getVar("mid"));
  }
 
 	$ret = 	array(
-				'slideshows'=>$slideshows,
-				'direction'=>$direction,
-				'desc'=>$desc,
-    'delay'=>$delay,
-    'duration'=>$duration,
-    'transtype'=>$transtype,
-    'effecttype'=>$effecttype,
-    'effectoption'=>$effectoption,
-    'uniqid'=>substr(md5(uniqid(rand())),27),
-    'display_type'=>$moduleConfig['display_type']
-			);
+					'slideshows'=>$slideshows,
+					'direction'=>$direction,
+					'desc'=>$desc,
+					'delay'=>$delay,
+					'duration'=>$duration,
+					'transtype'=>$transtype,
+					'effecttype'=>$effecttype,
+					'effectoption'=>$effectoption,
+					'uniqid'=>substr(md5(uniqid(rand())),27),
+					'display_type'=>$moduleConfig['display_type']);
 	return $ret;
 }
 
 function extgalleryBlockEdit($options) {
 
-	global $xoopsUser;
-
-	$catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
+	$catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 
 	$form = _MB_EXTGALLERY_PHOTO_NUMBER." : <input name=\"options[]\" size=\"5\" maxlength=\"255\" value=\"".$options[0]."\" type=\"text\" /><br />";
 	$hSelected = "";
@@ -641,22 +633,18 @@ function extgalleryBlockEdit($options) {
 
 function extgalleryBlockSlideshowEdit($options) {
 
- include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-
-	global $xoopsUser;
-
-	$catHandler = xoops_getmodulehandler('publiccat', 'extgallery');
-	$form = _MB_EXTGALLERY_SLIDESHOW_DELAY." : <input name=\"options[]\" size=\"5\" maxlength=\"255\" value=\"".$options[0]."\" type=\"text\" /><br />";
+ $catHandler = icms_getModuleHandler('publiccat', 'extgallery');
+ $form = _MB_EXTGALLERY_SLIDESHOW_DELAY." : <input name=\"options[]\" size=\"5\" maxlength=\"255\" value=\"".$options[0]."\" type=\"text\" /><br />";
  $form .= _MB_EXTGALLERY_SLIDESHOW_DURATION." : <input name=\"options[]\" size=\"5\" maxlength=\"255\" value=\"".$options[1]."\" type=\"text\" /><br />";
 
- $transTypeSelect = new XoopsFormSelect(_MB_EXTGALLERY_TRANSTYPE, 'options[]',$options[2]);
+ $transTypeSelect = new icms_form_elements_Select(_MB_EXTGALLERY_TRANSTYPE, 'options[]',$options[2]);
 	$transTypeSelect->addOption("default", _MB_EXTGALLERY_DEFAULT);
  $transTypeSelect->addOption("fold", _MB_EXTGALLERY_FOLD);
  $transTypeSelect->addOption("kenburns", _MB_EXTGALLERY_KENBURNS);
  $transTypeSelect->addOption("push", _MB_EXTGALLERY_PUSH);
  $form .= _MB_EXTGALLERY_TRANSTYPE." : ".$transTypeSelect->render().'<br />';
 
- $effectTypeSelect = new XoopsFormSelect(_MB_EXTGALLERY_EFFECT_TYPE, 'options[]',$options[3]);
+ $effectTypeSelect = new icms_form_elements_Select(_MB_EXTGALLERY_EFFECT_TYPE, 'options[]',$options[3]);
  $effectTypeSelect->addOption("quad", _MB_EXTGALLERY_QUAD);
  $effectTypeSelect->addOption("cubic", _MB_EXTGALLERY_CUBIC);
  $effectTypeSelect->addOption("quart", _MB_EXTGALLERY_QUART);
@@ -669,7 +657,7 @@ function extgalleryBlockSlideshowEdit($options) {
  $effectTypeSelect->addOption("elastic", _MB_EXTGALLERY_ELASTIC);
  $form .= _MB_EXTGALLERY_EFFECT_TYPE." : ".$effectTypeSelect->render().'<br />';
 
- $effectOptionSelect = new XoopsFormSelect(_MB_EXTGALLERY_EFFECT_OPTION, 'options[]',$options[4]);
+ $effectOptionSelect = new icms_form_elements_Select(_MB_EXTGALLERY_EFFECT_OPTION, 'options[]',$options[4]);
  $effectOptionSelect->addOption("in", _MB_EXTGALLERY_IN);
  $effectOptionSelect->addOption("out", _MB_EXTGALLERY_OUT);
  $effectOptionSelect->addOption("in:out", _MB_EXTGALLERY_INOUT);
@@ -700,12 +688,12 @@ function extgalleryBlockSlideshowEdit($options) {
 	array_shift($options);
 	array_shift($options);
 	array_shift($options);
- array_shift($options);
- array_shift($options);
- array_shift($options);
- array_shift($options);
- array_shift($options);
- array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
 
 	$form .= _MB_EXTGALLERY_DISPLAY_DESC.' : <input type="radio" name="options[]" value="1"'.$yChecked.' />&nbsp;'._YES.'&nbsp;&nbsp;<input type="radio" name="options[]" value="0"'.$nChecked.' />'._NO.'<br />';
 	$form .= $catHandler->getBlockSelect($options);
