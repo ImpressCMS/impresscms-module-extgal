@@ -1,7 +1,7 @@
 <?php
-
+define('_MU_MODULE_ICMS_VERSION_SUPPORTED',"1.3");
 include '../../../include/cp_header.php';
-include 'moduleUpdateFunction.php';
+//include 'moduleUpdateFunction.php';
 
 $catHandler = icms_getModuleHandler('publiccat', 'extgallery');
 $photoHandler = icms_getModuleHandler('publicphoto', 'extgallery');
@@ -151,6 +151,40 @@ function is__writable($path) {
 	return true;
 }
 
+// Return -1 if v1 is lower than v2, 1 if v1 is greater than v2
+// and 0 if equals
+function compareVersion($v1, $v2) {
+
+ $v1 = explode('.', $v1);
+ $v2 = explode('.', $v2);
+
+ if($v1[0] > $v2[0]) {
+  return 1;
+ } elseif($v1[0] == $v2[0]) {
+  if($v1[1] > $v2[1]) {
+   return 1;
+  } elseif($v1[1] == $v2[1]) {
+   if($v1[1] > $v2[2]) {
+    return 1;
+   } elseif ($v1[2] == $v2[2]) {
+    return 0;
+   }
+  }
+ }
+
+ return -1;
+
+}
+
+function isICMSVersionSupportInstalledModuleVersion() {
+
+ if(compareVersion(substr(ICMS_VERSION_NAME,6), _MU_MODULE_ICMS_VERSION_SUPPORTED) != -1) {
+  return true;
+	} else {
+	 return false;
+	}
+
+}
 if(!function_exists("gd_info")) eval($code);
 
 $gd = gd_info();
@@ -179,7 +213,7 @@ echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLER
 $moduleVersion = icms::$module->getVar('version');
 echo _AM_EXTGALLERY_EXTGALLERY_VERSION." : <b>".substr($moduleVersion,0,1).'.'.substr($moduleVersion,1,1).'.'.substr($moduleVersion,2)."</b><br /><br />";
 
-isXoopsVersionSupportInstalledModuleVersion() ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>" ;
+isICMSVersionSupportInstalledModuleVersion() ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>" ;
 echo _AM_EXTGALLERY_XOOPS_VERSION." : <b>".ICMS_VERSION_NAME." (".$test.")</b><br /><br />";
 
 if(icms::$module->config['graphic_lib'] == 'GD') {
