@@ -4,12 +4,10 @@ if (!defined('ICMS_ROOT_PATH')) {
 	die("ICMS root path not defined");
 }
 
-// require ICMS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
-
 class ExtgalleryGroupPermForm extends icms_form_Groupperm {
 
- function ExtgalleryGroupPermForm($title, $modid, $permname, $permdesc, $url = "", $anonymous = true) {
-  $this->icms_form_Groupperm($title, $modid, $permname, $permdesc, $url, $anonymous);
+ function ExtgalleryGroupPermForm(&$title, $modid, $permname, $permdesc, $url = '', $anonymous = true) {
+	parent::__construct($title, $modid, $permname, $permdesc, $url, $anonymous);
  }
 
  function render() {
@@ -71,8 +69,8 @@ class ExtgalleryGroupPermForm extends icms_form_Groupperm {
 
 class ExtgalleryGroupFormCheckBox extends icms_form_elements_Groupperm {
 
- function ExtgalleryGroupFormCheckBox($caption, $name, $groupId, $values = null) {
-  $this->icms_form_elements_Groupperm($caption, $name, $groupId, $values);
+ function ExtgalleryGroupFormCheckBox(&$caption, $name, $groupId, $values = null) {
+	parent::__construct($caption, $name, $groupId, $values);
  }
 
  function render() {
