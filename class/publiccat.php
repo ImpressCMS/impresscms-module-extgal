@@ -40,8 +40,6 @@ class ExtgalleryPubliccatHandler extends ExtgalleryCatHandler {
 		$cat = $this->getObjects($criteria);
 		$cat = $cat[0];
 
-		$moduleId = icms::$module->getVar('mid');
-
 		// Retriving permission mask
 		$gpermHandler =& icms::handler('icms_member_groupperm');
 		$moduleId = icms::$module->getVar('mid');

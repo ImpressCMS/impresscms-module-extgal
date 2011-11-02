@@ -26,10 +26,10 @@
 //  ------------------------------------------------------------------------ //
 
 if (!defined("ICMS_ROOT_PATH")) {
-	die("XOOPS root path not defined");
+	die("ICMS root path not defined");
 }
 
-include_once 'ExtgalleryPersistableObjectHandler.php';
+include_once ICMS_ROOT_PATH.'/modules/extgallery/class/ExtgalleryPersistableObjectHandler.php';
 
 class ExtgalleryQuota extends icms_core_Object {
 

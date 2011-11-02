@@ -20,8 +20,8 @@ class ExtgalleryGroupPermForm extends icms_form_Groupperm {
   }
   
   $gperm_handler = icms::handler('icms_member_groupperm');
-		$member_handler = icms::handler('icms_member');
-		$glist = & $member_handler->getGroupList();
+  $member_handler = icms::handler('icms_member');
+  $glist = & $member_handler->getGroupList();
   
   foreach (array_keys($glist) as $i) {
    if ($i == ICMS_GROUP_ANONYMOUS && !$this->_showAnonymous) continue;
