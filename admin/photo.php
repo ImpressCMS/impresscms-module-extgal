@@ -400,8 +400,8 @@ switch($op) {
 					exit;
 				}
 
-				echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_APPROVE.'</legend>'."\n";
-				echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
+				echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_APPROVE.'</legend>'."\n";
+				echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
 				echo _AM_EXTGALLERY_EDITDELETE_PHOTOTABLE_INFO."\n";
 				echo '</fieldset><br />'."\n";
 
@@ -535,9 +535,9 @@ switch($op) {
 		}
 
 		// Batch upload
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_ADD_BATCH.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_ADD_BATCH.'</legend>';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		echo '<b>'._AM_EXTGALLERY_BATCH_PATH.'</b> : '.ICMS_ROOT_PATH.'/modules/extgallery/batch/<br /><br />'.sprintf(_AM_EXTGALLERY_ADD_BATCH_INFO, $nbPhotos);
 		echo '</fieldset><br />';
 
@@ -551,9 +551,9 @@ switch($op) {
 		echo '</fieldset><br />';
 
   // Rebuild thumbnail
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_REBUILD_THUMB.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_REBUILD_THUMB.'</legend>';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		echo _AM_EXTGALLERY_REBUILD_THUMB_INFO;
 		echo '</fieldset><br />';
 
@@ -566,9 +566,9 @@ switch($op) {
 		echo '</fieldset><br />';
   
 		// Edit/delete photo
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_EDITDELETE_PHOTO.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_EDITDELETE_PHOTO.'</legend>';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		echo _AM_EXTGALLERY_EDITDELETE_PHOTO_INFO;
 		echo '</fieldset><br />';
 
@@ -581,8 +581,8 @@ switch($op) {
 		echo '</fieldset><br />';
 
 		// Pending photo
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_PENDING_PHOTO.'</legend>';
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_PENDING_PHOTO.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		//echo '<img src="../images/approve.gif" style="vertical-align:middle;" />&nbsp;&nbsp;'._AM_EXTGALLERY_APPROVE_INFO.'<br />';
 		echo '<img src="../images/edit.gif" style="vertical-align:middle;" />&nbsp;&nbsp;'._AM_EXTGALLERY_EDIT_INFO.'<br />';
 		echo '<img src="../images/delete.gif" style="vertical-align:middle;" />&nbsp;&nbsp;'._AM_EXTGALLERY_DELETE_INFO;
@@ -645,6 +645,5 @@ switch($op) {
 		icms_cp_footer();
 
 		break;
-
 }
 ?>

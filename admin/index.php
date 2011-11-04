@@ -208,7 +208,7 @@ $gd = gd_info();
 //echo '</fieldset>';
 //echo '<br />';
 
-echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_SERVER_CONF.'</legend>';
+echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_SERVER_CONF.'</legend>';
 
 $moduleVersion = icms::$module->getVar('version');
 echo _AM_EXTGALLERY_EXTGALLERY_VERSION." : <b>".substr($moduleVersion,0,1).'.'.substr($moduleVersion,1,1).'.'.substr($moduleVersion,2)."</b><br /><br />";

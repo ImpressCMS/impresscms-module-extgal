@@ -110,7 +110,7 @@ switch($op) {
 						}";
 				echo "</script>";
 
-				echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_MOD_PUBLIC_CAT.'</legend>';
+				echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_MOD_PUBLIC_CAT.'</legend>';
 
 				$photoSelect = "\n".'<select size="1" name="photo_id" id="photo_id" onChange="ChangeThumb();" onkeydown="ChangeThumb();">'."\n";
 				$photoSelect .= '<option value="0">&nbsp;</option>'."\n";
@@ -176,9 +176,9 @@ switch($op) {
 		icms_cp_header();
 		icms::$module -> displayAdminMenu( 2, icms::$module -> getVar( 'name' ) );
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_MODDELETE_PUBLICCAT.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_MODDELETE_PUBLICCAT.'</legend>';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
 		echo _AM_EXTGALLERY_MODDELETE_PUBLICCAT_INFO."\n";
 		echo '</fieldset><br />'."\n";
 
@@ -189,9 +189,9 @@ switch($op) {
 
 		echo '</fieldset>';
 		echo '<br />';
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_ADD_PUBLIC_CAT.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_ADD_PUBLIC_CAT.'</legend>';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>'."\n";
 		echo _AM_EXTGALLERY_ADD_PUBLIC_CAT_INFO."\n";
 		echo '</fieldset><br />'."\n";
 

@@ -79,8 +79,8 @@ switch($step) {
 		/**
 		 * Public category permission mask
 		 */
-		echo '<fieldset id="defaultBookmark"><legend><a href="#defaultBookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\'default\'); toggleIcon(\'defaultIcon\');"><img id="defaultIcon" src="../images/minus.gif" />&nbsp;'._AM_EXTGALLERY_PUBLIC_PERM_MASK.'</a></legend><div id="default">';
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset id="defaultBookmark" style="border: #e8e8e8 1px solid;"><legend><a href="#defaultBookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\'default\'); toggleIcon(\'defaultIcon\');"><img id="defaultIcon" src="../images/minus.gif" />&nbsp;'._AM_EXTGALLERY_PUBLIC_PERM_MASK.'</a></legend><div id="default">';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		echo _AM_EXTGALLERY_PUBLIC_PERM_MASK_INFO;
 		echo '</fieldset><br />';
 		echo '<table class="outer" style="width:100%;">';
@@ -164,8 +164,8 @@ switch($step) {
       			$form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
       		}
 
-      		echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
-      		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+      		echo '<fieldset id="'.$perm['name'].'Bookmark" style="border: #e8e8e8 1px solid;"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
+      		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
       		echo constant($perm['info']);
       		echo '</fieldset>';
       		echo $form->render().'<br />';
@@ -186,8 +186,8 @@ switch($step) {
       			$form->addItem($cat->getVar('cat_id'), $cat->getVar('cat_name'), $cat->getVar('cat_pid'));
       		}
 
-      		echo '<fieldset id="'.$perm['name'].'Bookmark"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
-      		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+      		echo '<fieldset id="'.$perm['name'].'Bookmark" style="border: #e8e8e8 1px solid;"><legend><a href="#'.$perm['name'].'Bookmark" style="font-weight:bold; color:#990000;" onClick="extgal_toggle(\''.$perm['name'].'\'); toggleIcon(\''.$perm['name'].'Icon\');"><img id="'.$perm['name'].'Icon" src="../images/minus.gif" />&nbsp;'.constant($perm['title']).'</a></legend><div id="'.$perm['name'].'">';
+      		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
       		echo constant($perm['info']);
       		echo '</fieldset>';
       		echo $form->render().'<br />';

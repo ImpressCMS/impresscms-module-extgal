@@ -66,7 +66,7 @@ switch($op) {
 				icms_cp_header();
 				icms::$module -> displayAdminMenu( 6, icms::$module -> getVar( 'name' ) );
 
-				echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_AVAILABLE_FONT.'</legend>';
+				echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_AVAILABLE_FONT.'</legend>';
 
 				$fonts = array();
 
@@ -425,7 +425,7 @@ switch($op) {
 		icms_cp_header();
 		icms::$module -> displayAdminMenu( 6, icms::$module -> getVar( 'name' ) );
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_FONT_MANAGMENT.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_FONT_MANAGMENT.'</legend>';
 
 		$nbFonts = 0;
 		$fonts = array();
@@ -449,7 +449,7 @@ switch($op) {
 
 		echo '</fieldset><br />';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_WATERMARK_CONF.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_WATERMARK_CONF.'</legend>';
 
 		// Display Watermark param form if FreeType is supported
 		if(function_exists('imagettfbbox')) {
@@ -502,7 +502,7 @@ switch($op) {
 
 		echo '</fieldset><br />';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_BORDER_CONF.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_BORDER_CONF.'</legend>';
 
 		$form = new icms_form_Theme(_AM_EXTGALLERY_BORDER_CONF, 'border_conf', 'watermark-border.php?op=conf', 'post', true);
 		$form->addElement(new icms_form_elements_ColorPicker(_AM_EXTGALLERY_INNER_BORDER_COLOR, 'inner_border_color', icms::$module->config['inner_border_color']),false);
@@ -515,8 +515,8 @@ switch($op) {
 
 		echo '</fieldset><br />';
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_WATERMARK_BORDER_EXEMPLE.'</legend>';
-		echo '<fieldset><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_WATERMARK_BORDER_EXEMPLE.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#0A3760;">'._AM_EXTGALLERY_INFORMATION.'</legend>';
 		echo _AM_EXTGALLERY_WATERMARK_BORDER_EXEMPLE_INFO;
 		echo '</fieldset>';
 		$imageTest = getImageTest();

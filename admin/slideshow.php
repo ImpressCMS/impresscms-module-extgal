@@ -201,7 +201,7 @@ switch($op) {
 		icms_cp_header();
 		icms::$module -> displayAdminMenu( 7, icms::$module -> getVar( 'name' ) );
 
-		echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_SLIDESHOW_CONF.'</legend>';
+		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_SLIDESHOW_CONF.'</legend>';
   
   //echo "<pre>";print_r($icmsModuleConfig);echo "</pre>";
   

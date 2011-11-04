@@ -26,7 +26,7 @@ function desactivateExtention() {
  file_put_contents(ICMS_ROOT_PATH.'/class/textsanitizer/config.custom.php', "<?php\rreturn \$config = ".var_export($conf,true)."\r?>");
 }
 
-echo '<fieldset><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_EXTENTION_INFO.'</legend>';
+echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_EXTENTION_INFO.'</legend>';
 if(!extentionInstalled()) {
 	echo "<h3 style=\"color:red;\">"._AM_EXTGALLERY_EXTENTION_NOT_INSTALLED."</h3><br /><form action=\"install-extention.php\" method=\"post\"><input type=\"hidden\" name=\"step\" value=\"download\" /><input class=\"formButton\" value=\""._AM_EXTGALLERY_INSTALL_EXTENTION."\" type=\"submit\" /></form>";
 } else {
