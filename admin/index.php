@@ -224,7 +224,7 @@ if(icms::$module->config['graphic_lib'] == 'GD') {
 	($gd['GIF Read Support'] && $gd['GIF Create Support']) ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>" ;
 	echo _AM_EXTGALLERY_GIF_SUPPORT." : ".$test."<br />";
 
-	($gd['JPG Support']) ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>";
+	($gd['JPEG Support']) ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>";
 	echo _AM_EXTGALLERY_JPEG_SUPPORT." : ".$test."<br />";
 
 	($gd['PNG Support']) ? $test = "<span style=\"color:#33CC33;\"><b>OK</b></span>" : $test = "<span style=\"color:#FF0000;\"><b>KO</b></span>";
