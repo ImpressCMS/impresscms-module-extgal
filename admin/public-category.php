@@ -199,7 +199,7 @@ switch($op) {
 		$form->addElement(new icms_form_elements_Label(_AM_EXTGALLERY_PARENT_CAT, $catHandler->getSelect('cat_pid', 'leaf', true)));
 		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255'),true);
 		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4'),false);
-		$form->addElement(new icms_form_elements_DhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', ''), false);
+		$form->addElement(new icms_form_elements_Dhtmltextarea(_AM_EXTGALLERY_DESC, 'cat_desc', ''), false);
 		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150'), false);
 		$form->addElement(new icms_form_elements_Hidden("step", 'enreg'));
 		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
