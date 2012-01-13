@@ -7,7 +7,7 @@ if (!defined("ICMS_ROOT_PATH")) {
 include_once 'publicPerm.php';
 include_once 'ExtgalleryPersistableObjectHandler.php';
 
-class ExtgalleryPhoto extends ExtcalPersistableObjectHandler
+class ExtgalleryPhoto extends ExtgalleryPersistableObjectHandler
 {
 
 	var $externalKey = array();
