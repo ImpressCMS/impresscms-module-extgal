@@ -505,9 +505,9 @@ switch($op) {
 		echo '<fieldset style="border: #e8e8e8 1px solid;"><legend style="font-weight:bold; color:#990000;">'._AM_EXTGALLERY_BORDER_CONF.'</legend>';
 
 		$form = new icms_form_Theme(_AM_EXTGALLERY_BORDER_CONF, 'border_conf', 'watermark-border.php?op=conf', 'post', true);
-		$form->addElement(new icms_form_elements_ColorPicker(_AM_EXTGALLERY_INNER_BORDER_COLOR, 'inner_border_color', icms::$module->config['inner_border_color']),false);
+		$form->addElement(new icms_form_elements_Colorpicker(_AM_EXTGALLERY_INNER_BORDER_COLOR, 'inner_border_color', icms::$module->config['inner_border_color']),false);
 		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_INNER_BORDER_SIZE, 'inner_border_size', '2', '2', icms::$module->config['inner_border_size']),false);
-		$form->addElement(new icms_form_elements_ColorPicker(_AM_EXTGALLERY_OUTER_BORDER_COLOR, 'outer_border_color', icms::$module->config['outer_border_color']),false);
+		$form->addElement(new icms_form_elements_Colorpicker(_AM_EXTGALLERY_OUTER_BORDER_COLOR, 'outer_border_color', icms::$module->config['outer_border_color']),false);
 		$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_OUTER_BORDER_SIZE, 'outer_border_size', '2', '2', icms::$module->config['outer_border_size']),false);
 		$form->addElement(new icms_form_elements_Hidden("step", 'enreg'));
 		$form->addElement(new icms_form_elements_Button("", "submit", _SUBMIT, "submit"));
