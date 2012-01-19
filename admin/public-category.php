@@ -123,11 +123,11 @@ switch($op) {
 				}
 				$photoSelect .= '</select>'."\n";
 
-				$form = new icms_Form_Theme(_AM_EXTGALLERY_MOD_PUBLIC_CAT, 'create_cat', 'public-category.php?op=modify', 'post', true);
+				$form = new icms_form_Theme(_AM_EXTGALLERY_MOD_PUBLIC_CAT, 'create_cat', 'public-category.php?op=modify', 'post', true);
 				$form->addElement(new icms_form_elements_Label(_AM_EXTGALLERY_PARENT_CAT, $catHandler->getSelect('cat_pid', 'leaf', true, $cat->getVar('cat_pid'))));
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_NAME, 'cat_name', '70', '255', $cat->getVar('cat_name','e')),false);
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_WEIGHT, 'cat_weight', '4', '4', $cat->getVar('cat_weight')),false);
-				$form->addElement(new icms_form_elements_DhtmlTextArea(_AM_EXTGALLERY_DESC, 'cat_desc', $cat->getVar('cat_desc','e')), false);
+				$form->addElement(new icms_form_elements_Dhtmltextarea(_AM_EXTGALLERY_DESC, 'cat_desc', $cat->getVar('cat_desc','e')), false);
 				$elementTrayThumb = new icms_form_elements_Tray(_AM_EXTGALLERY_THUMB);
 				$elementTrayThumb->addElement(new icms_form_elements_Label("", $photoSelect."<img style=\"float:left; margin-top:5px;\" id=\"thumb\" src=\"$selectedPhoto\" />"));
 				$form->addElement(new icms_form_elements_Text(_AM_EXTGALLERY_CAT_IMG, 'cat_imgurl', '70', '150', $cat->getVar('cat_imgurl','e')),false);
